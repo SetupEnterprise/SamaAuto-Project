@@ -18,8 +18,9 @@ class CreateClientsTable extends Migration
             $table->timestamps();
             $table->integer('users_id')->unique();
             $table->foreign('users_id')
-                  ->references('clients_id')->on('users')
-                  ->onDelete('restrict')
+                  ->references('clients_id')
+                  ->on('users')
+                  ->onDelete('cascade')
                   ->onUpdate('cascade');
         });
     }
