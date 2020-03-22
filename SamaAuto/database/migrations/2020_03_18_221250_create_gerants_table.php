@@ -16,12 +16,7 @@ class CreateGerantsTable extends Migration
         Schema::create('gerants', function (Blueprint $table) {
             $table->bigIncrements('gerants_id');
             $table->timestamps();
-            $table->integer('users_id')->unique();
-            $table->foreign('users_id')
-                  ->references('gerants_id')
-                  ->on('users')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
+            
         });
     }
 

@@ -16,12 +16,6 @@ class CreateComptablesTable extends Migration
         Schema::create('comptables', function (Blueprint $table) {
             $table->bigIncrements('comptables_id');
             $table->timestamps();
-            $table->integer('users_id')->unique();
-            $table->foreign('users_id')
-                  ->references('comptables_id')
-                  ->on('users')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
         });
     }
 

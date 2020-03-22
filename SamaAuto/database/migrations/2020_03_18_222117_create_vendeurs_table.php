@@ -16,11 +16,7 @@ class CreateVendeursTable extends Migration
         Schema::create('vendeurs', function (Blueprint $table) {
             $table->bigIncrements('vendeurs_id');
             $table->timestamps();
-            $table->integer('users_id')->unique();
-            $table->foreign('users_id')
-                  ->references('vendeurs_id')->on('users')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
+            
         });
     }
 

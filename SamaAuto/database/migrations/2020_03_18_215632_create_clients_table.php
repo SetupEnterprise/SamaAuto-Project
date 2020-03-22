@@ -16,12 +16,7 @@ class CreateClientsTable extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->bigIncrements('clients_id');
             $table->timestamps();
-            $table->integer('users_id')->unique();
-            $table->foreign('users_id')
-                  ->references('clients_id')
-                  ->on('users')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
+            
         });
     }
 

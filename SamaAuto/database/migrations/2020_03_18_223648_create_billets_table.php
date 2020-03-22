@@ -15,20 +15,6 @@ class CreateBilletsTable extends Migration
     {
         Schema::create('billets', function (Blueprint $table) {
             $table->bigIncrements('billets_id');
-            $table->integer('vehicules_id');
-            $table->foreign('vehicules_id')
-                  ->references('billets_id')
-                  ->on('vehicules')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
-            $table->integer('users_id');
-            $table->foreign('users_id')
-                  ->references('billets_id')
-                  ->on('users')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
             $table->string('libelle');
             $table->date('date_depart');
             $table->time('heure_depart');

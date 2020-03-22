@@ -15,20 +15,6 @@ class CreateVehiculeTrajetsTable extends Migration
     {
         Schema::create('vehicule_trajets', function (Blueprint $table) {
             $table->bigIncrements('vehicule_trajets_id');
-            $table->integer('trajets_id')->unique();
-            $table->foreign('trajets_id')
-                  ->references('vehicule_trajets_id')
-                  ->on('trajets')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
-            $table->integer('vehicules_id')->unique();
-            $table->foreign('vehicules_id')
-                  ->references('vehicule_trajets_id')
-                  ->on('vehicules')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
             $table->timestamps();
         });
     }

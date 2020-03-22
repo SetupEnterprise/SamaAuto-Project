@@ -18,13 +18,6 @@ class CreateTrajetsTable extends Migration
             $table->string('point_depart',100)->unique();
             $table->string('point_arrivee',100)->unique();
             $table->integer('prix');
-            $table->integer('billets_id');
-            $table->foreign('billets_id')
-                  ->references('trajets_id')
-                  ->on('billets')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
             $table->integer('distance');
             $table->timestamps();
         });

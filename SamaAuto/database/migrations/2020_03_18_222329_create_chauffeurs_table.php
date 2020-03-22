@@ -16,12 +16,7 @@ class CreateChauffeursTable extends Migration
         Schema::create('chauffeurs', function (Blueprint $table) {
             $table->bigIncrements('chauffeurs_id');
             $table->timestamps();
-            $table->integer('users_id')->unique();
-            $table->foreign('users_id')
-                  ->references('chauffeurs_id')
-                  ->on('users')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
+            
         });
     }
 

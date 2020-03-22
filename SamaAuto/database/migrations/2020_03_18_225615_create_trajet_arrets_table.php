@@ -15,20 +15,6 @@ class CreateTrajetArretsTable extends Migration
     {
         Schema::create('trajet_arrets', function (Blueprint $table) {
             $table->bigIncrements('trajet_arrets_id');
-            $table->integer('arrets_id')->unique();
-            $table->foreign('arrets_id')
-                  ->references('trajet_arrets_id')
-                  ->on('arrets')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
-
-
-            $table->integer('trajets_id')->unique();
-            $table->foreign('trajets_id')
-                  ->references('trajet_arrets_id')
-                  ->on('trajets')
-                  ->onDelete('restrict')
-                  ->onUpdate('cascade');
             $table->timestamps();
         });
     }
