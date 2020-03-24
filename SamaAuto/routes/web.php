@@ -16,3 +16,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+//Fonctionnalité du gérant by @Ouzy012
+Route::resource('gerant','GerantsController');
+Route::resource('categorie','CategorieController');
+Route::resource('vehicule','VehiculesController');

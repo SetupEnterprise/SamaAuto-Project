@@ -16,10 +16,16 @@ class CreateVehiculesTable extends Migration
         Schema::create('vehicules', function (Blueprint $table) {
             $table->bigIncrements('vehicules_id');
             $table->string('matricule',100)->unique();
-            $table->string('type');
-            $table->integer('nbre_place');
+            $table->integer('categories_id');
             $table->string('image_vehicule');
             $table->timestamps();
+            //$table->unsignedBigInteger('type_vehicule_id')->unique();
+
+            $table->foreign('categories_id')
+                  ->references('categories_id')
+                  ->on('categorie')
+                  ->onDelete('cascade')
+                  ->onUpdate('cascade');
         });
     }
 

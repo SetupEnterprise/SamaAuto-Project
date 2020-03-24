@@ -76,6 +76,7 @@
                 </div>
 
                 <h3>Bon Début...</h3>
+                <a name="" id="" class="btn btn-primary" href="{{ route('gerant.index') }}" role="button">Gérant</a>
             </div>
         </div>
     </body>
