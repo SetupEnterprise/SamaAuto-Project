@@ -43,10 +43,18 @@ class CategorieController extends Controller
             'categorie' => 'required | min:2 |string',
             'nbre_place' => 'required | integer',
         ]);
+        $categorie = ucfirst(strtolower($request->categorie));        
+
+        //Verifier si la catégorie de véhicule existe déjà
+        if(Categorie::where('categorie',$categorie)->count() >=1)
+        {
+            session()->flash('messageCategorieExiste','La catégorie de véhicule '.$request->categorie.' existe déjà');
+            return back();
+        }
 
         //Insertion dans la base de données
         Categorie::create([
-            'categorie'=>$request->categorie,
+            'categorie'=>$categorie,
             'nbre_place'=>$request->nbre_place
         ]);
         //flash("La catégorie véhicule ".$request->type." a été ajouté avec succès");

@@ -4,6 +4,9 @@
     <a name="" id="" class="btn btn-primary" href="{{ route('categorie.index')}}" role="button">
     Ajouter catégorie véhicule
     </a>
+    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.show')}}" role="button">
+    Lister catégorie véhicule
+    </a>
     <form action="{{ route('vehicule.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     {{-- Champs matricule véhicule --}}
