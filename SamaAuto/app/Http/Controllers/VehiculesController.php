@@ -16,9 +16,8 @@ class VehiculesController extends Controller
 
     public function index()
     {
-        //Formulaire ajouter véhicule
-        $categorie = Categorie::all();        
-        return view('gerant.ajouter-vehicule', compact('categorie'));
+        $listeVehicule = Vehicule::all();
+        return view('gerant.lister-vehicule', compact('listeVehicule'));
     }
 
     /**
@@ -28,8 +27,9 @@ class VehiculesController extends Controller
      */
     public function create()
     {
-        
-
+        //Formulaire ajouter véhicule
+        $categorie = Categorie::all();        
+        return view('gerant.ajouter-vehicule', compact('categorie'));
     }
 
     /**
@@ -50,22 +50,30 @@ class VehiculesController extends Controller
         ]);
 
         //dd($request->file('image_vehicule'));
+        $matricule = strtoupper($request->matricule);                  
+        //Verifier si le matricule du véhicule existe déjà
+        if(Vehicule::where('matricule',$matricule)->count() >=1)
+        {
+            session()->flash('messageMatriculeExiste','Le matricule du véhicule '.$request->matricule.' existe déjà');
+            return back();
+        }
         if ($files = $request->file('image_vehicule')) {            
             // Definir le chemin du fichier
             $destinationPath = public_path('/image_vehicule/'); // upload path
-            // Upload Orginal Image           
             $image_vehicule = date('YmdHis') . "." . $files->getClientOriginalExtension();
-            $files->move($destinationPath, $image_vehicule);
-            $insert['image'] = "$image_vehicule";
-
+            
             //Ajout dans la base de données
             $ajoutVehicule = new Vehicule;
-            $ajoutVehicule->matricule = request('matricule');
+            $ajoutVehicule->matricule = $matricule;
             $ajoutVehicule->categories_id = request('categories_id');
             $ajoutVehicule->image_vehicule = "$image_vehicule";
             $ajoutVehicule->save();
 
-            return redirect()->route('gerant.index');
+            // Upload Orginal Image                       
+            $files->move($destinationPath, $image_vehicule);
+            $insert['image'] = "$image_vehicule";
+
+            return $this->index();
         }
     }
 
@@ -77,7 +85,9 @@ class VehiculesController extends Controller
      */
     public function show($id)
     {
-        //
+        $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();
+        $voirCategorie = Categorie::where('categories_id', $voirVehicule->categories_id)->firstOrFail();
+        return view('gerant.voir-info-vehicule', compact('voirVehicule', 'voirCategorie'));
     }
 
     /**
@@ -87,8 +97,12 @@ class VehiculesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
+    {        
+        //Fonction Split avec Laravel 
+        $listeId = explode(' ', $id, 2);
+        $vehicules_id = $listeId[0];
+        $categorie_id = $listeId[1];
+
     }
 
     /**

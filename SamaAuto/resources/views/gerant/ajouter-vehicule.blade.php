@@ -1,12 +1,22 @@
 <div class="col-lg-3"></div>
 
 <div class="col-lg-6">
-    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.index')}}" role="button">
+    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.create')}}" role="button">
     Ajouter catégorie véhicule
-    </a>
-    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.show')}}" role="button">
+    </a><br>
+    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.index')}}" role="button">
     Lister catégorie véhicule
     </a>
+    <br>
+    <a name="" id="" class="btn btn-primary" href="{{ route('vehicule.index')}}" role="button">
+    Lister véhicule
+    </a>
+    {{-- Affichage d'erreurs --}}
+    @if(session()->has('messageMatriculeExiste'))
+        <span class="helper helper-danger">
+          {{ session()->get('messageMatriculeExiste') }}
+        </span>
+    @endif
     <form action="{{ route('vehicule.store') }}" method="POST" enctype="multipart/form-data">
     @csrf
     {{-- Champs matricule véhicule --}}
