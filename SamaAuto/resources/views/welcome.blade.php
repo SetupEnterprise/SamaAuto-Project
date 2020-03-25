@@ -77,6 +77,12 @@
                 </div>
               </div>
 
+<<<<<<< HEAD
+=======
+                <h3>Bon Début...</h3>
+                <a name="" id="" class="btn btn-primary" href="{{ route('gerant.index') }}" role="button">Gérant</a>
+            </div>
+>>>>>>> 38c448746150124b9a185ee32571241f32f2979e
         </div>
     </body>
 </html>

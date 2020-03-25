@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\models\Categorie;
+
 
 class GerantsController extends Controller
 {
@@ -11,9 +13,11 @@ class GerantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
     public function index()
     {
-        //
+        $categorie = Categorie::all();
+        return view('gerant.ajouter-vehicule', compact('categorie'));
     }
 
     /**
@@ -23,7 +27,7 @@ class GerantsController extends Controller
      */
     public function create()
     {
-        //
+        
     }
 
     /**
@@ -33,8 +37,8 @@ class GerantsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {        
+        
     }
 
     /**
