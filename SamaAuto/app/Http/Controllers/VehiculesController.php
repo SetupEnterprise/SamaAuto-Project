@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\models\Categorie;
 use App\models\Vehicule;
+use App\models\Control;
+use Illuminate\Support\Facades\DB;
 
 class VehiculesController extends Controller
 {
@@ -85,9 +87,11 @@ class VehiculesController extends Controller
      */
     public function show($id)
     {
-        $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();
-        $voirCategorie = Categorie::where('categories_id', $voirVehicule->categories_id)->firstOrFail();
-        return view('gerant.voir-info-vehicule', compact('voirVehicule', 'voirCategorie'));
+        /* new Control()->infoVehicule($id); */
+        $requete = "show";
+        $control = new Control;
+        return $control->infoVehicules($id, $requete);
+        
     }
 
     /**
@@ -98,11 +102,9 @@ class VehiculesController extends Controller
      */
     public function edit($id)
     {        
-        //Fonction Split avec Laravel 
-        $listeId = explode(' ', $id, 2);
-        $vehicules_id = $listeId[0];
-        $categorie_id = $listeId[1];
-
+        $requete = "edit";
+        $control = new Control;
+        return $control->modifierUnVehicule($id, $requete);
     }
 
     /**
@@ -114,7 +116,16 @@ class VehiculesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //dd($id." ".$request->categorie);
+
+        //Requete de mise à jour
+        $affected = DB::table('vehicules')
+                  ->where('vehicules_id', $id)
+                  ->update([
+                        'categories_id' => $request->categorie,
+                      ]); 
+
+        return $this->create();
     }
 
     /**
