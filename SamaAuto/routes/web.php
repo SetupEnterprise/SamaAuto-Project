@@ -17,6 +17,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/sing-in', function () {
+    return view('authentification.auth');
+});
+
 //Fonctionnalité du gérant by @Ouzy012
 Route::resource('gerant','GerantsController');
 Route::resource('categorie','CategorieController');

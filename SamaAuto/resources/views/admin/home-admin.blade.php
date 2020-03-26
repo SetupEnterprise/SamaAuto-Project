@@ -1,9 +1,5 @@
-@extends('layouts.home')
+@extends('layouts.master_admin')
 
-@section('content')
-        <div id="corps">
+@section('contenu_page')
 
-
-
-        </div>
-@stop
+@endsection
