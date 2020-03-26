@@ -22,6 +22,7 @@
                         <li><a href="#">Points de vente</a></li>
                         <li><a href="#">Acheter billet</a></li>
                         <li><a href="#">Les lignes</a></li>
+                        <li><a href="{{ route('gerant.index') }}">Gérant</a></li>
                       </ul>
 
             </nav>
@@ -76,13 +77,6 @@
                   <img id="image" src="<?php echo asset('img/samaautosloganjb12.png')?>" width="60%" />
                 </div>
               </div>
-
-<<<<<<< HEAD
-=======
-                <h3>Bon Début...</h3>
-                <a name="" id="" class="btn btn-primary" href="{{ route('gerant.index') }}" role="button">Gérant</a>
             </div>
->>>>>>> 38c448746150124b9a185ee32571241f32f2979e
-        </div>
     </body>
 </html>
