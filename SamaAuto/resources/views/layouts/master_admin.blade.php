@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-{{--   <title>SB Admin 2 - Blank</title>
+{{--   <title>ADMIN</title>
  --}}
   <!-- Custom fonts for this template-->
   <link href="theme-asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -44,7 +44,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Profile User (Ex:Gérant)</span></a>
+          <span>Administrateur</span></a>
       </li>
 
       <!-- Divider -->
@@ -97,18 +97,19 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Lister 2</span>
+          <span>Parametres</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Lister</h6>
-            <a class="collapse-item" href="#">Login</a>
+            <h6 class="collapse-header">Modifier</h6>
+            <a class="collapse-item" href="#">Profile</a>
             <a class="collapse-item" href="#">Register</a>
             <a class="collapse-item" href="#">Forgot Password</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="#">404 Page</a>
-            <a class="collapse-item active" href="#">Blank Page</a>
+            <h6 class="collapse-header">Ajouts</h6>
+            <a class="collapse-item" href="#">Vendeur</a>
+            <a class="collapse-item" href="#">Chauffeur</a>
+            <a class="collapse-item active" href="#">Gerants</a>
           </div>
         </div>
       </li>
