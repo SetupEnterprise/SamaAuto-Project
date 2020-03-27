@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\SignUpConfirmation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UsersController@create')->name('sign_up');
+Route::get('/sign_up', 'UsersController@create')->name('sign_up');
+Route::post('/sign_up', 'UsersController@store')->name('sign_up');
+
+

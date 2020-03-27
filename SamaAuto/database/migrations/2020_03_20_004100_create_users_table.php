@@ -20,11 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('telephone',13);
             $table->string('adresse');
             $table->string('email',100)->unique();
-            $table->string('login',100)->unique();
             $table->string('password');
-            $table->smallInteger('statut');
+            $table->smallInteger('statut')->nullable();
             $table->string('profils');
-            $table->rememberToken();
             $table->timestamps();
         });
     }

@@ -2,7 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Client as AppClient;
+use App\Http\Requests\UserFormRequest;
+use App\Mail\SignUpConfirmation;
 use Illuminate\Http\Request;
+use App\models\User;
+use App\models\Client;
+use Illuminate\Support\Facades\Mail;
 
 class UsersController extends Controller
 {
@@ -23,18 +29,38 @@ class UsersController extends Controller
      */
     public function create()
     {
-        //
+        $mailable = new SignUpConfirmation('sarr', 'moussadiegane', 'moussadiegane@gmail');
+        Mail::to('moussadiegane@gmail')->send($mailable);
+       return view("sign_up");
     }
 
     /**
      * Store a newly created resource in storage.
-     *
+     * 
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserFormRequest $request)
     {
-        //
+        
+
+        $user = User::create([
+            'nom' => $request->nom, 
+            'prenom' => $request->prenom, 
+            'email' => $request->email,
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone,
+            'password' => $request->passwd,
+            'profils' => 'client'
+        ]);
+        if($user){
+            Client::firstOrCreate([
+                'users_id' => $user->id
+            ]);
+        }
+    
+      //  flash("Vehicule crée avec succés!", "success");
+        return redirect()->route('sign_up');
     }
 
     /**

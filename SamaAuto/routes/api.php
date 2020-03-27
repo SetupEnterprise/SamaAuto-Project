@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Requests\UserFormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/user', function (UserFormRequest $request) {
     return $request->user();
 });
