@@ -12,12 +12,11 @@
 {{--   <title>SB Admin 2 - Blank</title>
  --}}
   <!-- Custom fonts for this template-->
-  <link href="theme-asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  {{--  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">  --}}
+  <link href="{{ asset('theme-asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
-  <link href="theme-asset/css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="theme-asset/js/sweetalert.css" rel="stylesheet">
+  <link href="{{ asset('theme-asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('theme-asset/js/sweetalert.css') }}" rel="stylesheet">
 
 </head>
 
@@ -355,16 +354,16 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="theme-asset/vendor/jquery/jquery.min.js"></script>
-  <script src="theme-asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('theme-asset/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('theme-asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   {{--  Gestion des notifications  --}}
 
   <!-- Core plugin JavaScript-->
-  <script src="theme-asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{{ asset('theme-asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="theme-asset/js/sb-admin-2.min.js"></script>
+  <script src="{{ asset('theme-asset/js/sb-admin-2.min.js') }}"></script>
 
 
 </body>

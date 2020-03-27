@@ -17,8 +17,6 @@ class GerantsController extends Controller
     public function index()
     {
         return view('gerant.accueil-gerant');
-        /* $categorie = Categorie::all();
-        return view('gerant.ajouter-vehicule', compact('categorie')); */
     }
 
     /**
@@ -28,6 +26,8 @@ class GerantsController extends Controller
      */
     public function create()
     {
+        $categorie = Categorie::all();
+        return view('gerant.ajouter-vehicule', compact('categorie'));
 
     }
 

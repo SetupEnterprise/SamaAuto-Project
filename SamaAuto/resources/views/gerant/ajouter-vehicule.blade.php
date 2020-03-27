@@ -1,16 +1,13 @@
-<div class="col-lg-3"></div>
+@extends('layouts.master_gerant')
 
-<div class="col-lg-6">
-    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.create')}}" role="button">
-    Ajouter catégorie véhicule
-    </a><br>
-    <a name="" id="" class="btn btn-primary" href="{{ route('categorie.index')}}" role="button">
-    Lister catégorie véhicule
-    </a>
-    <br>
-    <a name="" id="" class="btn btn-primary" href="{{ route('vehicule.index')}}" role="button">
-    Lister véhicule
-    </a>
+@section('contenu_page')
+<!-- Titre de la page -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Ajouter véhicule</h1>
+    </div>
+
+    <!-- Content Row -->
+    <div class="row">
     {{-- Affichage d'erreurs --}}
     @if(session()->has('messageMatriculeExiste'))
         <span class="helper helper-danger">
@@ -29,8 +26,8 @@
         {{ $errors->first('matricule')}}
         </small>
     @endif
-    </div> 
-    {{-- Fin Champs matricule véhicule --}}   
+    </div>
+    {{-- Fin Champs matricule véhicule --}}
 
     {{-- Liste des catégories de véhicules --}}
     <div class="form-group">
@@ -38,7 +35,7 @@
       <select class="form-control" name="categories_id" id="selectCategorie">
       <option value="">-------Veuillez sélectionner une catégorie-------</option>
       @foreach ($categorie as $c)
-        <option value="{{ $c->categories_id}}">{{ $c->categorie}} {{ $c->nbre_place}} places</option>          
+        <option value="{{ $c->categories_id}}">{{ $c->categorie}} {{ $c->nbre_place}} places</option>
       @endforeach
       </select>
       @if ($errors->has('categories_id'))
@@ -49,7 +46,7 @@
       <p id="demo"></p>
     </div>
     {{-- Fin Liste des catégories de véhicules --}}
-     
+
     {{-- <div class="form-group">
       <label for="">Nombre de places</label>
       <input type="text" class="form-control" name="" id="" aria-describedby="helpId" placeholder="" disabled>
@@ -58,11 +55,8 @@
 
     {{-- Image du véhicule --}}
     <div class="form-group">
-      <label class="custom-file">Image</label>
-        <input type="file" name="image_vehicule" id="" placeholder="" class="custom-file-input"
-         aria-describedby="fileHelpId">
-        <span class="custom-file-control"></span>
-      
+      <label for="">Image véhicule</label>
+      <input type="file" class="form-control-file" name="image_vehicule" id="" placeholder="" aria-describedby="fileHelpId">
       @if ($errors->has('image_vehicule'))
         <small id="helpId" class="form-text text-muted">
         {{ $errors->first('image_vehicule')}}
@@ -72,8 +66,9 @@
     {{-- Fin Image du véhicule --}}
 
     {{-- Boutton Submit --}}
-    <button type="submit" class="btn btn-primary">Ajouter</button>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
 
     </form>
 
 </div>
+@endsection
