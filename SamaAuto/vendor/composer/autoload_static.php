@@ -459,25 +459,15 @@ class ComposerStaticInit2a97a5c62a9c76c44e4e78d93e591051
         'App\\Arret' => __DIR__ . '/../..' . '/app/models/Arret.php',
         'App\\Billet' => __DIR__ . '/../..' . '/app/models/Billet.php',
         'App\\Chauffeur' => __DIR__ . '/../..' . '/app/models/Chauffeur.php',
-<<<<<<< HEAD
-=======
         'App\\Client' => __DIR__ . '/../..' . '/app/models/Client.php',
->>>>>>> b95ca9036b4d5eaf3f46d7c099649af9077339d8
         'App\\Comptable' => __DIR__ . '/../..' . '/app/models/Comptable.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
         'App\\Control' => __DIR__ . '/../..' . '/app/models/Control.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
-<<<<<<< HEAD
-        'App\\Gerant' => __DIR__ . '/../..' . '/app/models/Gerant.php',
-        'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
-        'App\\Http\\Controllers\\ArretsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArretsController.php',
-        'App\\Http\\Controllers\\BilletsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BilletsController.php',
-=======
         'App\\Http\\Controllers\\AdminController' => __DIR__ . '/../..' . '/app/Http/Controllers/AdminController.php',
         'App\\Http\\Controllers\\ArretsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ArretsController.php',
         'App\\Http\\Controllers\\BilletsController' => __DIR__ . '/../..' . '/app/Http/Controllers/BilletsController.php',
         'App\\Http\\Controllers\\CategorieController' => __DIR__ . '/../..' . '/app/Http/Controllers/CategorieController.php',
->>>>>>> b95ca9036b4d5eaf3f46d7c099649af9077339d8
         'App\\Http\\Controllers\\ChauffeursController' => __DIR__ . '/../..' . '/app/Http/Controllers/ChauffeursController.php',
         'App\\Http\\Controllers\\ClientsController' => __DIR__ . '/../..' . '/app/Http/Controllers/ClientsController.php',
         'App\\Http\\Controllers\\ComptablesController' => __DIR__ . '/../..' . '/app/Http/Controllers/ComptablesController.php',
@@ -505,18 +495,11 @@ class ComposerStaticInit2a97a5c62a9c76c44e4e78d93e591051
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Trajet' => __DIR__ . '/../..' . '/app/models/Trajet.php',
         'App\\TrajetArret' => __DIR__ . '/../..' . '/app/models/TrajetArret.php',
-<<<<<<< HEAD
-        'App\\Vehicule' => __DIR__ . '/../..' . '/app/models/Vehicule.php',
-        'App\\VehiculeTrajet' => __DIR__ . '/../..' . '/app/models/VehiculeTrajet.php',
-        'App\\models\\Client' => __DIR__ . '/../..' . '/app/models/Client.php',
-        'App\\models\\User' => __DIR__ . '/../..' . '/app/models/User.php',
-=======
         'App\\User' => __DIR__ . '/../..' . '/app/models/User.php',
         'App\\VehiculeTrajet' => __DIR__ . '/../..' . '/app/models/VehiculeTrajet.php',
         'App\\models\\Categorie' => __DIR__ . '/../..' . '/app/models/Categorie.php',
         'App\\models\\Gerant' => __DIR__ . '/../..' . '/app/models/Gerant.php',
         'App\\models\\Vehicule' => __DIR__ . '/../..' . '/app/models/Vehicule.php',
->>>>>>> b95ca9036b4d5eaf3f46d7c099649af9077339d8
         'Asm89\\Stack\\Cors' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/Cors.php',
         'Asm89\\Stack\\CorsService' => __DIR__ . '/..' . '/asm89/stack-cors/src/Asm89/Stack/CorsService.php',
         'Carbon\\Carbon' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Carbon.php',

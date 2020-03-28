@@ -29,9 +29,8 @@ class UsersController extends Controller
      */
     public function create()
     {
-        $mailable = new SignUpConfirmation('sarr', 'moussadiegane', 'moussadiegane@gmail');
-        Mail::to('moussadiegane@gmail')->send($mailable);
-       return view("sign_up");
+       
+       return view("client/sign_up");
     }
 
     /**
@@ -43,7 +42,8 @@ class UsersController extends Controller
     public function store(UserFormRequest $request)
     {
         
-
+        // $mailable = new SignUpConfirmation('sarr', 'moussadiegane', 'moussadiegane@gmail');
+        //Mail::to('moussadiegane@gmail')->send($mailable);
         $user = User::create([
             'nom' => $request->nom, 
             'prenom' => $request->prenom, 

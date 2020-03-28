@@ -1,4 +1,4 @@
-@extends('layouts/master',['title' => 'Inscription'])	
+@extends('layouts/client',['title' => 'Inscription'])	
 
 @section('content')
 	<h3>Inscription SamaAuto</h3>
