@@ -9,15 +9,14 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-{{--   <title>SB Admin 2 - Blank</title>
+{{--   <title>ADMIN</title>
  --}}
   <!-- Custom fonts for this template-->
-  <link href="theme-asset/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-  {{--  <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">  --}}
+  <link href="{{ asset('theme-asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
-  <link href="theme-asset/css/sb-admin-2.min.css" rel="stylesheet">
-  <link href="theme-asset/js/sweetalert.css" rel="stylesheet">
+  <link href="{{ asset('theme-asset/css/sb-admin-2.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('theme-asset/js/sweetalert.css') }}" rel="stylesheet">
 
 </head>
 
@@ -44,7 +43,7 @@
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-tachometer-alt"></i>
-          <span>Profile User (Ex:Gérant)</span></a>
+          <span>Administrateur</span></a>
       </li>
 
       <!-- Divider -->
@@ -97,18 +96,19 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Lister 2</span>
+          <span>Parametres</span>
         </a>
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Lister</h6>
-            <a class="collapse-item" href="#">Login</a>
+            <h6 class="collapse-header">Modifier</h6>
+            <a class="collapse-item" href="#">Profile</a>
             <a class="collapse-item" href="#">Register</a>
             <a class="collapse-item" href="#">Forgot Password</a>
             <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Other Pages:</h6>
-            <a class="collapse-item" href="#">404 Page</a>
-            <a class="collapse-item active" href="#">Blank Page</a>
+            <h6 class="collapse-header">Ajouts</h6>
+            <a class="collapse-item" href="#">Vendeur</a>
+            <a class="collapse-item" href="#">Chauffeur</a>
+            <a class="collapse-item active" href="#">Gerants</a>
           </div>
         </div>
       </li>
@@ -355,16 +355,16 @@
   </div>
 
   <!-- Bootstrap core JavaScript-->
-  <script src="theme-asset/vendor/jquery/jquery.min.js"></script>
-  <script src="theme-asset/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('theme-asset/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('theme-asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
   {{--  Gestion des notifications  --}}
 
   <!-- Core plugin JavaScript-->
-  <script src="theme-asset/vendor/jquery-easing/jquery.easing.min.js"></script>
+  <script src="{{ asset('theme-asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
   <!-- Custom scripts for all pages-->
-  <script src="theme-asset/js/sb-admin-2.min.js"></script>
+  <script src="{{ asset('theme-asset/js/sb-admin-2.min.js') }}"></script>
 
 
 </body>
