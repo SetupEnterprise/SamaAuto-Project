@@ -1,13 +1,16 @@
 @extends('layouts.master_gerant')
 
 @section('contenu_page')
+
 <!-- Titre de la page -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Ajouter véhicule</h1>
-    </div>
+<div class="d-sm-flex align-items-center justify-content-between mb-4">
+    <h1 class="h3 mb-0 text-gray-800">Ajouter véhicule</h1>
+</div>
 
     <!-- Content Row -->
-    <div class="row">
+<div class="row">
+    <div class="col-lg-4">
+
     {{-- Affichage d'erreurs --}}
     @if(session()->has('messageMatriculeExiste'))
         <span class="helper helper-danger">
@@ -71,4 +74,6 @@
     </form>
 
 </div>
+</div>
+
 @endsection

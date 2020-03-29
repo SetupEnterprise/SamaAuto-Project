@@ -13,7 +13,8 @@ class TrajetsController extends Controller
      */
     public function index()
     {
-        //
+        $id = 1;
+        return view('gerant.trajet.lister-trajet', compact('id'));
     }
 
     /**
@@ -23,7 +24,7 @@ class TrajetsController extends Controller
      */
     public function create()
     {
-        //
+        return view('gerant.trajet.ajouter-trajet');
     }
 
     /**
@@ -34,7 +35,7 @@ class TrajetsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        return view('gerant.trajet.lister-trajet');
     }
 
     /**
@@ -45,7 +46,7 @@ class TrajetsController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('gerant.trajet.voir-trajet');
     }
 
     /**

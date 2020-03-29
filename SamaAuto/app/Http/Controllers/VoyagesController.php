@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class ArretsController extends Controller
+class VoyagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,8 +14,7 @@ class ArretsController extends Controller
      */
     public function index()
     {
-        $id = 1;
-        return view('gerant.arret.lister-arret', compact('id'));
+        //
     }
 
     /**
@@ -24,7 +24,7 @@ class ArretsController extends Controller
      */
     public function create()
     {
-        return view('gerant.arret.ajouter-arret');
+        return view('gerant.voyage.creer-voyage');
     }
 
     /**
@@ -46,7 +46,7 @@ class ArretsController extends Controller
      */
     public function show($id)
     {
-        return view('gerant.arret.voir-info-arret');
+        //
     }
 
     /**
@@ -57,8 +57,7 @@ class ArretsController extends Controller
      */
     public function edit($id)
     {
-        $id = 1;
-        return view('gerant.arret.voir-arret', compact('id'));
+        //
     }
 
     /**
@@ -70,7 +69,7 @@ class ArretsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->index();
+        //
     }
 
     /**

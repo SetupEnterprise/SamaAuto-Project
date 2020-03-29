@@ -25,3 +25,6 @@ Route::get('/sing-in', function () {
 Route::resource('gerant','GerantsController');
 Route::resource('categorie','CategorieController');
 Route::resource('vehicule','VehiculesController');
+Route::resource('trajet','TrajetsController');
+Route::resource('arret','ArretsController');
+Route::resource('voyage','VoyagesController');
