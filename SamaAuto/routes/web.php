@@ -18,7 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/sing-in', function () {
+Route::get('/sign_in', function () {
     return view('authentification.auth');
 });
 

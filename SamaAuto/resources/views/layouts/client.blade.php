@@ -2,7 +2,7 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
       <meta charset="utf-8">
-    <title>{{$title ?? '' }}-SamaAuto</title>
+    <title>{{$title ?? '' }}SamaAuto</title>
       <base href="/">
       <meta name="viewport" content="width=device-width, initial-scale=1">
       <link href="<?php echo asset('css/bootstrap.min.css')?>" rel="stylesheet">
@@ -48,7 +48,7 @@
                      </form>
                   </div>
             </div>
-            <div id="container">
+            <div class="container">
 
               @yield('content')
 
