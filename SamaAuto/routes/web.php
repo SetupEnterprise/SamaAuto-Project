@@ -31,3 +31,6 @@ Route::resource('vehicule','VehiculesController');
 Route::get('/sign_up', 'UsersController@create')->name('sign_up');
 Route::post('/sign_up', 'UsersController@store')->name('sign_up');
 
+Route::resource('trajet','TrajetsController');
+Route::resource('arret','ArretsController');
+Route::resource('voyage','VoyagesController');

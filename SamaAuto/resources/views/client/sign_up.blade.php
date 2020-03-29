@@ -5,7 +5,7 @@
 	
 	<div id="corps-ins">
 		<div id="logo">
-			<img id="logo-ins" src="{{asset('img/samaautosloganjb1logo.png')}}" width="10%" />
+			<img id="logo-ins" src="{{asset('img/samaautosloganjb1logo.png')}}git" width="10%" />
 		  </div>
 		<div id="contenu">
 			<img id="image" src={{asset('img/samaautosloganjb1logo2.png')}} />

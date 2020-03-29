@@ -30,7 +30,7 @@ class VehiculesController extends Controller
     public function create()
     {
         //Formulaire ajouter véhicule
-        $categorie = Categorie::all();        
+        $categorie = Categorie::all();
         return view('gerant.ajouter-vehicule', compact('categorie'));
     }
 
@@ -42,7 +42,9 @@ class VehiculesController extends Controller
      */
     public function store(Request $request)
     {
-        //Récupération des données depuis le formulaire d'ajout de type de véhicule
+        return $this->index();
+        //Traitement back-end
+        /* //Récupération des données depuis le formulaire d'ajout de type de véhicule
         //Gestion des erreurs
         $this->validate($request,[
             'matricule' => 'required | min:2 |string',
@@ -52,18 +54,18 @@ class VehiculesController extends Controller
         ]);
 
         //dd($request->file('image_vehicule'));
-        $matricule = strtoupper($request->matricule);                  
+        $matricule = strtoupper($request->matricule);
         //Verifier si le matricule du véhicule existe déjà
         if(Vehicule::where('matricule',$matricule)->count() >=1)
         {
             session()->flash('messageMatriculeExiste','Le matricule du véhicule '.$request->matricule.' existe déjà');
             return back();
         }
-        if ($files = $request->file('image_vehicule')) {            
+        if ($files = $request->file('image_vehicule')) {
             // Definir le chemin du fichier
             $destinationPath = public_path('/image_vehicule/'); // upload path
             $image_vehicule = date('YmdHis') . "." . $files->getClientOriginalExtension();
-            
+
             //Ajout dans la base de données
             $ajoutVehicule = new Vehicule;
             $ajoutVehicule->matricule = $matricule;
@@ -71,12 +73,12 @@ class VehiculesController extends Controller
             $ajoutVehicule->image_vehicule = "$image_vehicule";
             $ajoutVehicule->save();
 
-            // Upload Orginal Image                       
+            // Upload Orginal Image
             $files->move($destinationPath, $image_vehicule);
             $insert['image'] = "$image_vehicule";
 
             return $this->index();
-        }
+        }*/
     }
 
     /**
@@ -91,7 +93,7 @@ class VehiculesController extends Controller
         $requete = "show";
         $control = new Control;
         return $control->infoVehicules($id, $requete);
-        
+
     }
 
     /**
@@ -101,7 +103,7 @@ class VehiculesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {        
+    {
         $requete = "edit";
         $control = new Control;
         return $control->modifierUnVehicule($id, $requete);
@@ -116,16 +118,16 @@ class VehiculesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //dd($id." ".$request->categorie);
+        return $this->index();
 
-        //Requete de mise à jour
+        /* //Requete de mise à jour
         $affected = DB::table('vehicules')
                   ->where('vehicules_id', $id)
                   ->update([
                         'categories_id' => $request->categorie,
-                      ]); 
+                      ]);
 
-        return $this->create();
+        return $this->index(); */
     }
 
     /**

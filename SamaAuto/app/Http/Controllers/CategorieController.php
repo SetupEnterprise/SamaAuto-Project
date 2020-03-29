@@ -27,7 +27,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //Formulaire ajouter catégorie véhicule 
+        //Formulaire ajouter catégorie véhicule
         return view('gerant.ajouter-type');
     }
 
@@ -39,13 +39,14 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
+        return $this->index();
         //Récupération des données depuis le formulaire d'ajout de type de véhicule
         //Gestion des erreurs
-        $this->validate($request,[
+        /* $this->validate($request,[
             'categorie' => 'required | min:2 |string',
             'nbre_place' => 'required | integer',
         ]);
-        $categorie = ucfirst(strtolower($request->categorie));        
+        $categorie = ucfirst(strtolower($request->categorie));
 
         //Verifier si la catégorie de véhicule existe déjà
         if(Categorie::where('categorie',$categorie)->count() >=1)
@@ -60,7 +61,7 @@ class CategorieController extends Controller
             'nbre_place'=>$request->nbre_place
         ]);
         //flash("La catégorie véhicule ".$request->type." a été ajouté avec succès");
-        return $this->index();
+        return $this->index(); */
     }
 
     /**
@@ -95,12 +96,13 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //Gestion des erreurs
+        return $this->index();
+        /* //Gestion des erreurs
         $this->validate($request,[
             'categorie' => 'required | min:2 |string',
             'nbre_place' => 'required | integer',
         ]);
-        $categorie = ucfirst(strtolower($request->categorie));        
+        $categorie = ucfirst(strtolower($request->categorie));
 
         //Verifier si la catégorie de véhicule existe déjà
         if(Categorie::where('categorie',$categorie)->count() >=1)
@@ -109,22 +111,15 @@ class CategorieController extends Controller
             return back();
         }
 
-        //Mise à jour de la catégorie de véhicule  
+        //Mise à jour de la catégorie de véhicule
         $affected = DB::table('categories')
                   ->where('categories_id', $id)
                   ->update([
                         'categorie' => $request->categorie,
                         'nbre_place' => $request->nbre_place,
-                      ]); 
+                      ]);
 
-        return $this->index();
-        /* Categorie::update([
-            'categorie' => $request->categorie,
-            'nbre_place' => $request->nbre_place,
-        ])->where('categories_id', $id); */
-
-        /*$listeCategorie = Categorie::all();
-        return view('gerant.lister-categorie', compact('listeCategorie'));*/
+        return $this->index(); */
     }
 
     /**
