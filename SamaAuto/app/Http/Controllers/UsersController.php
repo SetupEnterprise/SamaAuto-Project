@@ -29,24 +29,24 @@ class UsersController extends Controller
      */
     public function create()
     {
-       
+
        return view("client/sign_up");
     }
 
     /**
      * Store a newly created resource in storage.
-     * 
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(UserFormRequest $request)
     {
-        
+
         // $mailable = new SignUpConfirmation('sarr', 'moussadiegane', 'moussadiegane@gmail');
         //Mail::to('moussadiegane@gmail')->send($mailable);
         $user = User::create([
-            'nom' => $request->nom, 
-            'prenom' => $request->prenom, 
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
             'email' => $request->email,
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
@@ -58,7 +58,7 @@ class UsersController extends Controller
                 'users_id' => $user->id
             ]);
         }
-    
+
       //  flash("Vehicule crée avec succés!", "success");
         return redirect()->route('sign_up');
     }
@@ -71,7 +71,8 @@ class UsersController extends Controller
      */
     public function show($id)
     {
-        //
+        $profile = "Gerant";
+        return view('user.user-profile', compact('profile'));
     }
 
     /**

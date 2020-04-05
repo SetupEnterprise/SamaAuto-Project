@@ -27,10 +27,14 @@ Route::get('/sign_in', function () {
 Route::resource('gerant','GerantsController');
 Route::resource('categorie','CategorieController');
 Route::resource('vehicule','VehiculesController');
-
-
-
 Route::resource('trajet','TrajetsController');
+Route::resource('arret','ArretsController');
+Route::resource('voyage','VoyagesController');
+Route::resource('user','UsersController');
+
+
+
+
 Route::resource('arret','ArretsController');
 Route::resource('voyage','VoyagesController');
 

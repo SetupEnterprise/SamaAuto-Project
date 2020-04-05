@@ -15,7 +15,6 @@ body {
 	width:100%;
 	height: 5px;
 	background: /*#778899*/ greenyellow;
-
 	margin-top: 10px;
 }
 #corps{
@@ -39,7 +38,8 @@ body {
 #contenu {
 	width:90%;
 	height: 550px	;
-	background:#0295e0;
+	/*background:#0295e0;*/
+	background: url('../img/samaautofond.png');
 	margin-right: 5%;
 	top: 80px;
 	border-radius: 10px;
@@ -58,9 +58,9 @@ body {
 }
 #espacesaisi{
 	margin-top:130px;
-	margin-right:2%;
+	margin-right:9%;
 	float: right;
-	width: 30%;
+	width: 33%;
 }
 #form-inscription{
 	margin-top: 42px;
@@ -118,6 +118,7 @@ body {
 
 		width: 100%;
 		margin:0px;
+		background: url('../img/samaautofond.png');
 
 	}
 	#espacesaisi, #form-inscription{
@@ -126,7 +127,7 @@ body {
 	}
 
 	#tabsaisi{
-	width:80%;
+	width:100%;
 	border-bottom : 0px;
 	max-height: 300px;
 	}
@@ -135,7 +136,7 @@ body {
 	border-radius: 5px;
 	border:1px solid;
 	border-color:silver;
-	max-width:70%;
+	max-width:100%;
 	}
 	#tabsaisi tr td{
 	max-width:70%;
