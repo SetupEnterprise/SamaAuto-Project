@@ -13,7 +13,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin/home-admin');
     }
 
     /**
@@ -21,9 +21,9 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create_gerant()
     {
-        //
+        return view('admin/create-gerant');
     }
 
     /**
@@ -80,5 +80,20 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function stat_client()
+    {
+        return view('admin.statistiques-client');
+    }
+
+    public function stat_gerant()
+    {
+        return view('admin.statistiques-gerant');
+    }
+
+    public function stat_billet()
+    {
+        return view('admin.statistiques-billet');
     }
 }

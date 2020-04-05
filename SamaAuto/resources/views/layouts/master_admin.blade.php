@@ -56,75 +56,38 @@
 
       <!-- Nav Item - Pages Collapse Menu -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-          <i class="fas fa-fw fa-cog"></i>
-          <span>Enregistrer</span>
-        </a>
-        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Custom Components:</h6>
-            <a class="collapse-item" href="#">Enregistrer</a>
-            <a class="collapse-item" href="#">Enregistrer</a>
-          </div>
-        </div>
+        <a class="nav-link" href="{{ route('stat_client') }}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Client</span></a>
       </li>
 
       <!-- Nav Item - Utilities Collapse Menu -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Lister</span>
+          <span>Gérant</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Custom Utilities:</h6>
-            <a class="collapse-item" href="#">Lister</a>
-            <a class="collapse-item" href="#">Lister</a>
+            <a class="collapse-item" href="{{ route('create_gerant') }}">Ajouter</a>
+            <a class="collapse-item" href="{{ route('stat_gerant') }}">Statistiques</a>
           </div>
         </div>
       </li>
 
-      <!-- Divider
-      <hr class="sidebar-divider">-->
-
-      <!-- Heading
-      <div class="sidebar-heading">
-        Addons
-      </div> -->
-
-      <!-- Nav Item - Pages Collapse Menu -->
+      <!-- Nav Item - Billets -->
       <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true" aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Parametres</span>
-        </a>
-        <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Modifier</h6>
-            <a class="collapse-item" href="#">Profile</a>
-            <a class="collapse-item" href="#">Register</a>
-            <a class="collapse-item" href="#">Forgot Password</a>
-            <div class="collapse-divider"></div>
-            <h6 class="collapse-header">Ajouts</h6>
-            <a class="collapse-item" href="#">Vendeur</a>
-            <a class="collapse-item" href="#">Chauffeur</a>
-            <a class="collapse-item active" href="#">Gerants</a>
-          </div>
-        </div>
+      <a class="nav-link" href="{{ route('stat_billet')}}">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>billet</span></a>
       </li>
 
-      <!-- Nav Item - Charts -->
+      <!-- Nav Item - Vendeur -->
       <li class="nav-item">
         <a class="nav-link" href="#">
           <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
-      </li>
-
-      <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+          <span>Vendeur</span></a>
       </li>
 
       <!-- Divider -->
@@ -331,28 +294,28 @@
   <!-- End of Page Wrapper -->
 
   <!-- Scroll to Top Button-->
-  <a class="scroll-to-top rounded" href="#page-top">
-    <i class="fas fa-angle-up"></i>
-  </a>
+    <a class="scroll-to-top rounded" href="#page-top">
+      <i class="fas fa-angle-up"></i>
+    </a>
 
   <!-- Logout Modal-->
-  <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primary" href="#">Logout</a>
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="#">Logout</a>
+          </div>
         </div>
       </div>
     </div>
-  </div>
 
   <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('theme-asset/vendor/jquery/jquery.min.js') }}"></script>
@@ -363,9 +326,20 @@
   <!-- Core plugin JavaScript-->
   <script src="{{ asset('theme-asset/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
 
+  <!-- Page level plugins -->
+  <script src="{{ asset('chart.js/Chart.min.js')}}"></script>
+   <script src="{{ asset('chart.js/chartist.min.js')}}"></script>
+  
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('theme-asset/js/sb-admin-2.min.js') }}"></script>
-
+  <script src={{ asset('js/chart-area-demo.js')}}></script>
+  <script src={{ asset('js/chart-pie-demo.js')}}></script>
+  <script src={{ asset('js/chart-bar-demo.js')}}></script>
+  <script src={{ asset('js/chart-bar-authClient.js')}}></script>
+  <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
+<script src="{{ asset('js/light-bootstrap-dashboard.js?v=2.0.0')}}" type="text/javascript"></script>
+<!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
+  <script src="{{ asset('/js/chart-activity.js')}}"></script>
 
 </body>
 

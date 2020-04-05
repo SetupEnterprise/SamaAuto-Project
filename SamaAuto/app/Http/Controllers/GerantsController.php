@@ -86,4 +86,10 @@ class GerantsController extends Controller
     {
         //
     }
+
+
+    public function statistique()
+    {
+        return view('gerant.statistiques_gerant');
+    }
 }
