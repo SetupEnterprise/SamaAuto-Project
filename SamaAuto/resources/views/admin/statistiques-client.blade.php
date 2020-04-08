@@ -1,4 +1,4 @@
-@extends('layouts.master_admin')
+@extends('layouts.master_admin', ['title' => 'Statisques des clients'])
 
 @section('contenu_page')
 

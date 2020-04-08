@@ -1,4 +1,4 @@
-@extends('layouts.master_admin')
+@extends('layouts.master_admin', ['title' => 'Inscrire un Gerant'])
 
 @section('contenu_page')
 

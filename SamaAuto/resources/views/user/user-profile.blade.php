@@ -1,7 +1,7 @@
 {{-- Vérification du profile de l'utilisateur connecté --}}
 @if ($profile === "Admin")
     @extends('layouts.master_admin')
-@elseif ($profile === "Gerant")
+ @elseif ($profile === "Gerant")
     @extends('layouts.master_gerant')
 @else
     @extends('layouts.master_vendeur')

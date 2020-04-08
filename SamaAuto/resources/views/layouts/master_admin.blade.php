@@ -9,8 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-{{--   <title>ADMIN</title>
- --}}
+  <title>{{$title ?? ''}}</title>
   <!-- Custom fonts for this template-->
   <link href="{{ asset('theme-asset/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
@@ -26,12 +25,12 @@
   <div id="wrapper">
 
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar" style="background: #0295e0">
 
       <!-- Sidebar - Brand -->
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="#">
         <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+          
         </div>
         <div class="sidebar-brand-text mx-3">Sama Auto</div>
       </a>
@@ -85,7 +84,7 @@
 
       <!-- Nav Item - Vendeur -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+      <a class="nav-link" href="{{ route('stat_vendeur')}}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Vendeur</span></a>
       </li>
@@ -151,15 +150,15 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Pretes à quitter?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
           </div>
-          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-body">Sélectionnez "déconnecter" si vous etes sur de vouloir fermer votre session.</div>
           <div class="modal-footer">
-            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="#">Logout</a>
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+          <a class="btn btn-primary" href="{{ route('sign_in')}}">Déconnecter</a>
           </div>
         </div>
       </div>
@@ -168,6 +167,7 @@
   <!-- Bootstrap core JavaScript-->
   <script src="{{ asset('theme-asset/vendor/jquery/jquery.min.js') }}"></script>
   <script src="{{ asset('theme-asset/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('js/popper.min.js')}}" type="text/javascript"></script>
 
   {{--  Gestion des notifications  --}}
 
@@ -187,7 +187,19 @@
   <!-- Control Center for Light Bootstrap Dashboard: scripts for the example pages etc -->
 <script src="{{ asset('js/light-bootstrap-dashboard.js?v=2.0.0')}}" type="text/javascript"></script>
 <!-- Light Bootstrap Dashboard DEMO methods, don't include it in your project! -->
-  <script src="{{ asset('/js/chart-activity.js')}}"></script>
+  <script src="{{ asset('/js/demo.js')}}"></script>
+  <script src="{{ asset('/js/bar-billets.js')}}"></script>
+  <script src="{{ asset('/js/bar-vendeur.js')}}"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+        // Javascript method's body can be found in assets/js/demos.js
+        demo.initDashboardPageCharts();
+
+        demo.showNotification();
+
+    });
+</script>
 
 </body>
 

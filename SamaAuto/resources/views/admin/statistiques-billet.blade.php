@@ -1,4 +1,4 @@
-@extends('layouts.master_admin')
+@extends('layouts.master_admin', ['title' => 'Statisques des Billets'])
 
 @section('contenu_page')
 
@@ -69,45 +69,30 @@
         <!-- Bar Chart -->
         <div class="card shadow mb-4">
             <div class="card-header ">
-                <h4 class="card-title">2017 Sales</h4>
-                <p class="card-category">All products including Taxes</p>
+                <h4 class="card-title">2020 Billets Vendus</h4>
+                <p class="card-category">Billets vendus par mois</p>
             </div>
             <div class="card-body ">
-                <div id="chartActivity" class="ct-chart"></div>
-            </div>
-            <div class="card-footer ">
-                <div class="legend">
-                    <i class="fa fa-circle text-info"></i> Tesla Model S
-                    <i class="fa fa-circle text-danger"></i> BMW 5 Series
-                </div>
-                <hr>
-                <div class="stats">
-                    <i class="fa fa-check"></i> Data information certified
+                <div class="ct-chart">
+                  <canvas id="barBilletSold"></canvas>
                 </div>
             </div>
         </div>
-
-        
-
       </div>
 
       <div class="col-xl-12 col-lg-7">
         <!-- Bar Chart -->
         <div class="card shadow mb-4">
-          <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Diagramme des authentifications de clients par mois</h6>
-          </div>
-          <div class="card-body">
-            <div class="chart-bar">
-              <canvas id="myAreaChart"></canvas>
+            <div class="card-header ">
+                <h4 class="card-title">2020 Billets Reportés</h4>
+                <p class="card-category">Billets reportés par mois</p>
             </div>
-            <hr>
-            Le Diagramme des Authentification mensuels nous permet de connaitre le nombre d'acces des clients sur  notre plateforme <strong>SamaAuto</strong> dans chaque mois.
-          </div>
+            <div class="card-body ">
+                <div class="ct-chart">
+                  <canvas id="barBilletReport"></canvas>
+                </div>
+            </div>
         </div>
-
-        
-
       </div>
 
      

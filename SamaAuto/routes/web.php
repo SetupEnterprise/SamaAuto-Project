@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::get('/sign_in', function () {
     return view('authentification.auth');
-});
+})->name('sign_in');
 
 //Fonctionnalité du gérant by @Ouzy012
 Route::resource('gerant','GerantsController');

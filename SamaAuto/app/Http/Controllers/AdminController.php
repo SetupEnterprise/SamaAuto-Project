@@ -96,4 +96,9 @@ class AdminController extends Controller
     {
         return view('admin.statistiques-billet');
     }
+
+    public function stat_vendeur()
+    {
+        return view('admin.statistiques-vendeur');
+    }
 }
