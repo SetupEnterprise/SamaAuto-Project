@@ -13,15 +13,14 @@ class AddBilletsVehiculesIdForeign extends Migration
      */
     public function up()
     {
-        
         Schema::table('billets', function (Blueprint $table) {
-            $table->unsignedBigInteger('vehicules_id');
-            $table->foreign('vehicules_id')
-                  ->references('vehicules_id')
-                  ->on('vehicules')
-                  ->onDelete('cascade')
-                  ->onUpdate('cascade');
-        });
+            $table->unsignedBigInteger('vehicules_id')->unique()->after('users_id');
+           $table->foreign('vehicules_id')
+                 ->references('vehicules_id')
+                 ->on('vehicules')
+                 ->onDelete('cascade')
+                 ->onUpdate('cascade');
+       });
     }
 
     /**
@@ -33,7 +32,7 @@ class AddBilletsVehiculesIdForeign extends Migration
     {
         Schema::table('billets', function (Blueprint $table) {
             $table->dropForeign(['vehicules_id']);
-            $table->dropColumn('vehicules_id');
-        });
+           $table->dropColumn('vehicules_id');
+       });
     }
 }

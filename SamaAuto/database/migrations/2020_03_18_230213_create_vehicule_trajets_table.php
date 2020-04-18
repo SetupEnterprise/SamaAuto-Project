@@ -13,8 +13,9 @@ class CreateVehiculeTrajetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicule_trajets', function (Blueprint $table) {
-            $table->bigIncrements('vehicule_trajets_id');
+        Schema::create('vehicule_trajet', function (Blueprint $table) {
+            $table->bigIncrements('vehicule_trajet_id');
+            $table->date('dateVoyage');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateVehiculeTrajetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicule_trajets');
+        Schema::dropIfExists('vehicule_trajet');
     }
 }

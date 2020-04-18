@@ -14,12 +14,18 @@ class AddBilletsUserIdForeign extends Migration
     public function up()
     {
         Schema::table('billets', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id');
+            $table->unsignedBigInteger('users_id')->after('billets_id');
             $table->foreign('users_id')
                   ->references('users_id')
                   ->on('users')
                   ->onDelete('cascade')
                   ->onUpdate('cascade');
+            $table->unsignedBigInteger('trajets_id')->after('users_id');
+            $table->foreign('trajets_id')
+                 ->references('trajets_id')
+                 ->on('trajets')
+                 ->onDelete('cascade')
+                 ->onUpdate('cascade');
         });
 
         

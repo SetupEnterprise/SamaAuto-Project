@@ -14,7 +14,7 @@ class AddComptablesUserIdForeign extends Migration
     public function up()
     {
         Schema::table('comptables', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id')->unique();
+            $table->unsignedBigInteger('users_id')->unique()->after('comptables_id');
             $table->foreign('users_id')
                     ->references('users_id')
                     ->on('users')

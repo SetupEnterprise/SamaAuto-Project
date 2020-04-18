@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTrajetArretsTrajetsIdForeign extends Migration
+class AddArretsTrajetsIdForeign extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddTrajetArretsTrajetsIdForeign extends Migration
      */
     public function up()
     {
-        Schema::table('trajet_arrets', function (Blueprint $table) {
-            $table->unsignedBigInteger('trajets_id')->unique();
+        Schema::table('arrets', function (Blueprint $table) {
+            $table->unsignedBigInteger('trajets_id')->unique()->after('arrets_id');
             $table->foreign('trajets_id')
                   ->references('trajets_id')
                   ->on('trajets')
@@ -30,9 +30,10 @@ class AddTrajetArretsTrajetsIdForeign extends Migration
      */
     public function down()
     {
-        Schema::table('trajet_arrets', function (Blueprint $table) {
+        
+        Schema::table('arrets', function (Blueprint $table) {
             $table->dropForeign(['trajets_id']);
-            $table->dropColumn('trajets_id');
-        });
+           $table->dropColumn('trajets_id');
+       });
     }
 }

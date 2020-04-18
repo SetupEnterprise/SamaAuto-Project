@@ -14,7 +14,7 @@ class AddGerantsUserIdForeign extends Migration
     public function up()
     {
         Schema::table('gerants', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id')->unique();
+            $table->unsignedBigInteger('users_id')->unique()->after('gerants_id');
             $table->foreign('users_id')
                     ->references('users_id')
                     ->on('users')

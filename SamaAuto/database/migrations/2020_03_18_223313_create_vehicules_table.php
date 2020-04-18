@@ -16,6 +16,8 @@ class CreateVehiculesTable extends Migration
         Schema::create('vehicules', function (Blueprint $table) {
             $table->bigIncrements('vehicules_id');
             $table->string('matricule',100)->unique();
+            $table->string('type');
+            $table->integer('nbre_places');
             $table->string('image_vehicule');
             $table->timestamps();
             

@@ -14,7 +14,7 @@ class AddAdminUserIdForeign extends Migration
     public function up()
     {
         Schema::table('admin', function (Blueprint $table) {
-            $table->unsignedBigInteger('users_id')->unique();
+            $table->unsignedBigInteger('users_id')->unique()->after('admin_id');
             $table->foreign('users_id')
                     ->references('users_id')
                     ->on('users')
