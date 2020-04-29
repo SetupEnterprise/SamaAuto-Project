@@ -66,12 +66,12 @@ class VoyagesController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->date_voyage);
         $this->validate($request, [
             'matricule' => 'required | string | min:5 | max:20 ',
             'ville_de_depart' => 'required | string | min:4 | max:20 ',
             'ville_de_destination' => 'required | string | min:4 | max:20 ',
-            'date_voyage' => 'required|date|after:yesterday'
+            'date_voyage' => 'required|date|after:yesterday',
+            'heure_de_depart' => 'required'
         ]);
 
         $ville_de_depart = ucfirst(strtolower($request->ville_de_depart));
