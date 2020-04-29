@@ -32,9 +32,8 @@ Route::resource('arret','ArretsController');
 Route::resource('voyage','VoyagesController');
 Route::resource('user','UsersController');
 
-Route::resource('arret','ArretsController');
-Route::resource('voyage','VoyagesController');
-
+/* Route::get('/voyage/action', 'VoyagesController@action')->name('voyage.action');
+ */
 //Fin
 
 /* debut Fonctionnalite @Moussa Sarr */

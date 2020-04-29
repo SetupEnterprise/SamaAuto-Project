@@ -229,6 +229,9 @@
   <script src={{ asset('js/chart-pie-demo.js')}}></script>
   <script src={{ asset('js/chart-bar-demo.js')}}></script>
 
+  {{-- Ajax --}}
+  <script src="{{ asset('js/jquery-3.3.1.min.js') }}"></script>
+
 </body>
 
 </html>

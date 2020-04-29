@@ -15,7 +15,8 @@ class CreateVehiculeTrajetsTable extends Migration
     {
         Schema::create('vehicule_trajet', function (Blueprint $table) {
             $table->bigIncrements('vehicule_trajet_id');
-            $table->date('dateVoyage');
+            $table->date('date_voyage');
+            $table->time('heure_de_depart');
             $table->timestamps();
         });
     }
