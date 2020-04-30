@@ -5,6 +5,13 @@
     <!-- Content Row -->
 <div class="row">
     <div class="col-lg-12">
+        @if(session()->has('messageVoyageCreate'))
+            <span class="alert alert-success">
+                {{ session()->get('messageVoyageCreate') }}
+            </span>
+            <br><br>
+        @endif
+
 
         <form action="{{ route('voyage.store') }}" method="POST">
         @csrf
@@ -100,7 +107,7 @@
                 </div>
                 {{-- Affichage Erreur  --}}
                 <div class="form-group">
-                  <label for="">Date de départ</label>
+                  <label for="">Date de départ *</label>
                   <input type="date" class="form-control" name="date_voyage" placeholder="">
                   @if ($errors->has('date_voyage'))
                         <div class="alert alert-danger" role="alert">
@@ -111,7 +118,7 @@
                     @endif
                 </div>
                 <div class="form-group">
-                  <label for="">Heure de départ</label>
+                  <label for="">Heure de départ *</label>
                   <input type="time" class="form-control" name="heure_de_depart" placeholder="">
                   @if ($errors->has('heure_de_depart'))
                         <div class="alert alert-danger" role="alert">

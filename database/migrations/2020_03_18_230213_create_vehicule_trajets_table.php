@@ -13,7 +13,7 @@ class CreateVehiculeTrajetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicule_trajet', function (Blueprint $table) {
+        Schema::create('vehicule_trajets', function (Blueprint $table) {
             $table->bigIncrements('vehicule_trajet_id');
             $table->date('date_voyage');
             $table->time('heure_de_depart');

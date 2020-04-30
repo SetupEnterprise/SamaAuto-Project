@@ -18,6 +18,7 @@
   <!-- Custom styles for this template-->
   <link href="{{ asset('theme-asset/css/sb-admin-2.min.css')}}" rel="stylesheet">
   <link href="{{ asset('theme-asset/js/sweetalert.css')}}" rel="stylesheet">
+  <link href="{{ asset('css/add_design_gerant.css')}}" rel="stylesheet">
 
 </head>
 

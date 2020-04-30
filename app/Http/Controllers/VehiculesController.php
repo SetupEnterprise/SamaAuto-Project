@@ -19,7 +19,7 @@ class VehiculesController extends Controller
     public function index()
     {
         $listeVehicule = Vehicule::all();
-        return view('gerant.lister-vehicule', compact('listeVehicule'));
+        return view('gerant.vehicule.lister-vehicule', compact('listeVehicule'));
     }
 
     /**
@@ -31,7 +31,7 @@ class VehiculesController extends Controller
     {
         //Formulaire ajouter véhicule
         $categorie = Categorie::all();
-        return view('gerant.ajouter-vehicule', compact('categorie'));
+        return view('gerant.vehicule.ajouter-vehicule', compact('categorie'));
     }
 
     /**
@@ -87,7 +87,6 @@ class VehiculesController extends Controller
      */
     public function show($id)
     {
-        /* new Control()->infoVehicule($id); */
         $requete = "show";
         $control = new Control;
         return $control->infoVehicules($id, $requete);

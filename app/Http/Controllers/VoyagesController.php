@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\models\Control;
 use App\models\Trajet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\models\Vehicule;
+use App\models\VehiculeTrajet;
 
 class VoyagesController extends Controller
 {
@@ -17,7 +19,13 @@ class VoyagesController extends Controller
      */
     public function index()
     {
-        //
+        //Jointure
+        $listeVoyage = DB::table('vehicule_trajets')
+            ->join('trajets','trajets.trajets_id','=','vehicule_trajets.trajets_id')
+            ->join('vehicules','vehicules.vehicules_id','=','vehicule_trajets.vehicules_id')
+            ->get();
+
+        return view('gerant.voyage.lister-voyage', compact('listeVoyage'));
     }
 
     public function action(Request $request)
@@ -66,12 +74,13 @@ class VoyagesController extends Controller
      */
     public function store(Request $request)
     {
+        //dd($request->date_voyage->format('d-m-Y'));
         $this->validate($request, [
             'matricule' => 'required | string | min:5 | max:20 ',
             'ville_de_depart' => 'required | string | min:4 | max:20 ',
             'ville_de_destination' => 'required | string | min:4 | max:20 ',
             'date_voyage' => 'required|date|after:yesterday',
-            'heure_de_depart' => 'required'
+            'heure_de_depart' => 'required '
         ]);
 
         $ville_de_depart = ucfirst(strtolower($request->ville_de_depart));
@@ -89,6 +98,11 @@ class VoyagesController extends Controller
             session()->flash('messageMatriculeNoExiste',"Aucun véhicule de cette matricule ".$request->matricule."
             n'existe enregistré");
             return back();
+        }else{
+            $vehicules_id = DB::table('vehicules')
+                            ->select('vehicules_id')
+                            ->where('matricule', $request->matricule)
+                            ->get();
         }
 
         /* Rechercher si le trajet est déja enregistrer dans la base */
@@ -99,7 +113,34 @@ class VoyagesController extends Controller
         {
             session()->flash('messageTrajetNoExiste',"Le trajet ".$request->ville_de_depart." - ".$request->ville_de_destination." n'existe pas");
             return back();
+        }else {
+            $trajets_id = DB::table('trajets')
+                    ->select('trajets_id')
+                    ->where('point_depart','=',$ville_de_depart)
+                    ->where('point_arrivee', '=',$ville_de_destination)
+                    ->get();
         }
+
+        //dd($trajets_id->first()." et ".$vehicules_id);
+        foreach ($trajets_id as $t ) {
+            $trajet = $t->trajets_id;
+        }
+        foreach ($vehicules_id as $v ) {
+            $vehicule = $v->vehicules_id;
+        }
+
+        //Insertion dans la base de données
+        $ajoutVehiculeTrajet = new VehiculeTrajet;
+        $ajoutVehiculeTrajet->vehicules_id = $vehicule;
+        $ajoutVehiculeTrajet->trajets_id = $trajet;
+        $ajoutVehiculeTrajet->date_voyage = $request->date_voyage;
+        $ajoutVehiculeTrajet->heure_de_depart = $request->heure_de_depart;
+        $ajoutVehiculeTrajet->save();
+
+        //Redirection
+        session()->flash('messageVoyageCreate',"Le voyage ".$ville_de_depart." - ".$ville_de_destination."
+        pour le véhicule ".$request->matricule." est créé avec succes");
+        return $this->index();
 
     }
 
@@ -111,7 +152,18 @@ class VoyagesController extends Controller
      */
     public function show($id)
     {
-        //
+        $voirVoyage = DB::table('vehicule_trajets')
+            ->join('trajets','trajets.trajets_id','=','vehicule_trajets.trajets_id')
+            ->join('vehicules','vehicules.vehicules_id','=','vehicule_trajets.vehicules_id')
+            ->where('vehicule_trajet_id','=',$id)
+            ->get();
+
+        foreach ($voirVoyage as $vv ) {
+            $vehicules_id = $vv->vehicules_id;
+        }
+        $control = new Control;
+        $infoCategorie = $control->infoVehiculesFromVoyage($vehicules_id);
+        return view('gerant.voyage.voir-voyage', compact('voirVoyage', 'infoCategorie'));
     }
 
     /**

@@ -9,8 +9,11 @@ use App\models\Vehicule;
 
 class Control extends Model
 {
-    public function verif_existe()
+    public function infoVehiculesFromVoyage($id)
     {
+        $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();
+        $voirCategorie = Categorie::where('categories_id', $voirVehicule->categories_id)->firstOrFail();
+        return $voirCategorie;
 
     }
     public function infoVehicules($id, $requete)
@@ -18,13 +21,13 @@ class Control extends Model
         $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();
         $voirCategorie = Categorie::where('categories_id', $voirVehicule->categories_id)->firstOrFail();
         if ($requete == "show") {
-            return view('gerant.voir-info-vehicule',[
+            return view('gerant.vehicule.voir-info-vehicule',[
             'voirVehicule' => $voirVehicule,
             'voirCategorie' => $voirCategorie,
         ]);
         } else {
             $allCategories = $this->listerLesCategories();
-            return view('gerant.voir-vehicule',[
+            return view('gerant.vehicule.voir-vehicule',[
             'voirVehicule' => $voirVehicule,
             'voirCategorie' => $voirCategorie,
             'allCategories' => $allCategories,
@@ -48,4 +51,5 @@ class Control extends Model
         $categorie = Categorie::all();
         return $categorie;
     }
+
 }
