@@ -37,7 +37,7 @@ body {
 
 #contenu {
 	width:90%;
-	height: 550px	;
+	height: 580px	;
 	/*background:#0295e0;*/
 	background: url('../img/samaautofond.png');
 	margin-right: 5%;
@@ -89,6 +89,12 @@ body {
 }
 #tabsaisi tr{
 	margin-top: 5px;
+}
+.erreur{
+	color: red;
+	font-style: italic;
+	font-weight: bold;
+
 }
 /*---------------------------MEDIA!!!_______________________________*/
 

@@ -29,8 +29,8 @@ class UserFormRequest extends FormRequest
             'email' => 'required|email',
             'adresse' => 'required',
             'telephone' => 'required',
-            'passwd' => 'required|min:4',
-            'passwd_confirmation' => 'required'//|confirmed',
+            'passwd' => 'required | min:4',
+            'passwd_confirmation' => 'required | same:passwd',
         ];
     }
 
@@ -45,7 +45,7 @@ class UserFormRequest extends FormRequest
             'passwd.required' => 'vous devez saisir un mot de passe',
             'passwd.min' => 'le mot de passe devra etre supérieur a 4 caractères',
             'passwd_confirmation.required' => "Vous devez confirmer le mot de passe",
-           // 'passwd_confirmation.confirmed' => 'le mot de passe nest pas conforme'
+            'passwd_confirmation.same' => "le mot de passe n'est pas conforme"
         ];
     }
 }
