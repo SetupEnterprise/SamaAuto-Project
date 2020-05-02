@@ -15,8 +15,8 @@ class CreateTrajetsTable extends Migration
     {
         Schema::create('trajets', function (Blueprint $table) {
             $table->bigIncrements('trajets_id');
-            $table->string('point_depart',100)->unique();
-            $table->string('point_arrivee',100)->unique();
+            $table->string('point_depart',100);
+            $table->string('point_arrivee',100);
             $table->integer('prix');
             $table->timestamps();
         });

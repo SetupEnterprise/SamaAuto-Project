@@ -48,7 +48,7 @@ Route::get('/admin/stat_billet','AdminController@stat_billet')->name('stat_bille
 Route::get('/admin/stat_vendeur','AdminController@stat_vendeur')->name('stat_vendeur');
 
 
-Route::get('/gerant_Statistiques','GerantsController@statistique')->name('gerantStat');
+Route::get('/accueil','GerantsController@statistique')->name('gerantStat');
 Route::get('/sign_up', 'UsersController@create')->name('sign_up');
 Route::post('/sign_up', 'UsersController@store')->name('sign_up');
 

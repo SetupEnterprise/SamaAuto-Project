@@ -2,80 +2,103 @@
 
 @section('contenu_page')
 
-<!-- Titre de la page -->
-<div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Ajouter arret</h1>
-</div>
-
-    <!-- Content Row -->
+<!-- Content Row -->
 <div class="row">
-    <div class="col-lg-4">
+    <div class="col-lg-12">
+        <div class="row">
+            {{-- Message d'erreurs ici --}}
 
-    </div>
-    <div class="col-lg-4">
-        <form action="{{ route('arret.store') }}" method="POST">
-        @csrf
-            <div class="form-group">
-                <label for="trajet">Trajet *</label>
-                <select class="custom-select" name="trajet" id="trajet">
-                    <option value="null" selected>Sélectionner un trajet</option>
-                    @foreach ($listeTrajet as $lt)
-                        <option value="{{ $lt->trajets_id }}">
-                            {{ $lt->point_depart }} - {{ $lt->point_arrivee }}
-                        </option>
-                    @endforeach
-                </select>
-                {{-- Affichage erreur --}}
-                @if (session()->has('messageTrajetNull'))
-                    <div class="alert alert-danger" role="alert">
-                        <span>
-                            {{ session()->get('messageTrajetNull') }}
-                        </span>
+            @if(session()->has('messageArretExiste'))
+            <span class="alert alert-danger">
+            {{ session()->get('messageArretExiste') }}
+            </span>
+        @endif
+        </div>
+
+        @if ($listeTrajet->isEmpty())
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="design_text_voyage" class="text-lg">
+                        <h3>Aucun trajet n'est encore enregistré pour pouvoir ajouter des arrêts</h3>
+                        <a class="btn btn-primary" href="{{ route('trajet.create') }}" role="button">
+                        Ajouter trajet
+                        </a>
                     </div>
-                @endif
+                </div>
             </div>
+        @else
 
-            <div class="form-group">
-              <label for="">Nom arret *</label>
-              <input type="text" name="nom_arret" id="" class="form-control" placeholder="Ex : Baux maraicher, Arret niayes, ..." aria-describedby="helpId">
-              {{-- Affichage erreur --}}
-                @if ($errors->has('nom_arret'))
-                    <div class="alert alert-danger" role="alert">
-                        <span>
-                            {{ $errors->first('nom_arret')}}
-                        </span>
+            <form action="{{ route('arret.store') }}" method="POST">
+                @csrf
+                <div class="row">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-5">
+                        <div class="card-header py-3">
+                            <h4 class="m-0 font-weight-bold text-primary">Ajouter un arrêt</h4>
+                        </div>
                     </div>
-                @endif
-            </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
 
-            <div class="form-group">
-              <label for="">Région *</label>
-              <input type="text" name="region" class="form-control" placeholder="Saisir la région" aria-describedby="helpId">
-              {{-- Affichage erreur --}}
-                @if ($errors->has('region'))
-                    <div class="alert alert-danger" role="alert">
-                        <span>
-                            {{ $errors->first('region')}}
-                        </span>
                     </div>
-                @endif
-            </div>
+                    <div class="col-lg-4">
+                        <div class="form-group">
+                            <label for="trajet">Trajet *</label>
+                            <select class="custom-select" name="trajet" id="trajet">
+                                <option value="null" selected>Sélectionner un trajet</option>
+                                @foreach ($listeTrajet as $lt)
+                                    <option value="{{ $lt->trajets_id }}">
+                                        {{ $lt->point_depart }} - {{ $lt->point_arrivee }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            {{-- Affichage erreur --}}
+                            @if (session()->has('messageTrajetNull'))
+                                <span class="custom-control-description text-danger">
+                                    {{ session()->get('messageTrajetNull') }}
+                                </span>
+                            @endif
+                        </div>
 
-            <div class="form-group">
-              <label for="">Localisation</label>
-              <input type="text" name="localisation" class="form-control" placeholder="Saisir la localisation de l'arret" aria-describedby="helpId">
-              {{-- Affichage erreur --}}
-                @if ($errors->has('localisation'))
-                    <div class="alert alert-danger" role="alert">
-                        <span>
-                            {{ $errors->first('localisation')}}
-                        </span>
+                        <div class="form-group">
+                            <label for="">Nom arret *</label>
+                            <input type="text" name="nom_arret" id="" class="form-control" placeholder="Ex : Baux maraicher, Arret niayes, ..." aria-describedby="helpId">
+                            {{-- Affichage erreur --}}
+                                @if ($errors->has('nom_arret'))
+                                    <span class="custom-control-description text-danger">
+                                        {{ $errors->first('nom_arret')}}
+                                    </span>
+                                @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Région *</label>
+                            <input type="text" name="region" class="form-control" placeholder="Saisir la région" aria-describedby="helpId">
+                            {{-- Affichage erreur --}}
+                                @if ($errors->has('region'))
+                                    <span class="custom-control-description text-danger">
+                                        {{ $errors->first('region')}}
+                                    </span>
+                                @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="">Localisation</label>
+                            <input type="text" name="localisation" class="form-control" placeholder="Saisir la localisation de l'arret" aria-describedby="helpId">
+                            {{-- Affichage erreur --}}
+                                @if ($errors->has('localisation'))
+                                    <span class="custom-control-description text-danger">
+                                        {{ $errors->first('localisation')}}
+                                    </span>
+                                @endif
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Enregistrer</button>
                     </div>
-                @endif
-            </div>
-
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
-        </form>
+                </div>
+            </form>
+        @endif
     </div>
 </div>
 @endsection

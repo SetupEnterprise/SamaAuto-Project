@@ -17,7 +17,7 @@ class CategorieController extends Controller
     public function index()
     {
         $listeCategorie = Categorie::all();
-        return view('gerant.lister-categorie', compact('listeCategorie'));
+        return view('gerant.categorie.lister-categorie', compact('listeCategorie'));
     }
 
     /**
@@ -28,7 +28,7 @@ class CategorieController extends Controller
     public function create()
     {
         //Formulaire ajouter catégorie véhicule
-        return view('gerant.ajouter-type');
+        return view('gerant.categorie.ajouter-type');
     }
 
     /**
@@ -43,7 +43,7 @@ class CategorieController extends Controller
         //Gestion des erreurs
         $this->validate($request,[
             'categorie' => 'required | min:2 |string',
-            'nbre_place' => 'required | integer',
+            'nombre_de_places' => 'required | integer',
         ]);
         $categorie = ucfirst(strtolower($request->categorie));
 
@@ -55,11 +55,12 @@ class CategorieController extends Controller
         }
 
         //Insertion dans la base de données
-        Categorie::create([
-            'categorie'=>$categorie,
-            'nbre_place'=>$request->nbre_place
-        ]);
-        //flash("La catégorie véhicule ".$request->type." a été ajouté avec succès");
+        $ajoutCategorie = new Categorie;
+        $ajoutCategorie->categorie = $categorie;
+        $ajoutCategorie->nbre_place = $request->nombre_de_places;
+        $ajoutCategorie->save();
+
+        session()->flash('messageCategorieEnregistrer','La catégorie de véhicule '.$categorie.' est enregistrée avec succès');
         return $this->index();
     }
 

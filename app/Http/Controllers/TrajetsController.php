@@ -65,7 +65,7 @@ class TrajetsController extends Controller
         $ajoutTrajet->save();
 
         session()->flash('messageTrajetAjouter','Le trajet '
-        .$request->ville_de_depart.' - '.$request->ville_de_destination.' est enregistré avec succèss');
+        .$request->ville_de_depart.' - '.$request->ville_de_destination.' est enregistré avec succès');
         return $this->index();
 
     }

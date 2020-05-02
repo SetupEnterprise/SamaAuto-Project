@@ -55,6 +55,16 @@ class ArretsController extends Controller
             return back();
         }
 
+        if(DB::table('arrets')
+            ->where('trajets_id','=',$request->trajet)
+            ->where('nom_arret', '=', $request->nom_arret)
+            ->where('region', '=', $request->region)
+            ->count() >=1)
+        {
+            session()->flash('messageArretExiste',"L'arrêt ".$request->nom_arret." existe déjà");
+            return back();
+        }
+
         //Insertion dans la base de données
         $ajoutArret = new Arret;
         $ajoutArret->trajets_id = $request->trajet;
@@ -63,7 +73,7 @@ class ArretsController extends Controller
         $ajoutArret->localisation = $request->localisation;
         $ajoutArret->save();
 
-        session()->flash('messageArretAjouter',"L'arret ".$request->nom_arret." enregistré avec succes");
+        session()->flash('messageArretAjouter',"L'arret ".$request->nom_arret." enregistré avec succès");
         return $this->index();
 
 

@@ -43,7 +43,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="#">
+        <a class="nav-link" href="{{route('gerantStat')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Gérant</span></a>
       </li>
@@ -143,18 +143,13 @@
       </div> -->
 
       <!-- Nav Item - Charts -->
-      <li class="nav-item">
+      {{-- <li class="nav-item">
       <a class="nav-link" href="{{route('gerantStat')}}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Statistiques</span></a>
-      </li>
-
-      {{-- <!-- Nav Item - Tables -->
-      <li class="nav-item">
-        <a class="nav-link" href="#">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
       </li> --}}
+
+
 
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
