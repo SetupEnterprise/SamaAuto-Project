@@ -35,6 +35,6 @@ class SignUpConfirmation extends Mailable
      */
     public function build()
     {
-        return $this->markdown('emails.sign_up_confirmation');
+        return $this->subject('SamaAuto-Inscription')->from('moussadiegane.sarr@uadb.edu.sn')->markdown('emails.sign_up_confirmation');
     }
 }

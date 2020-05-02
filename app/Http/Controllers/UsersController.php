@@ -42,25 +42,26 @@ class UsersController extends Controller
     public function store(UserFormRequest $request)
     {
 
-        // $mailable = new SignUpConfirmation('sarr', 'moussadiegane', 'moussadiegane@gmail');
-        //Mail::to('moussadiegane@gmail')->send($mailable);
-        $user = User::create([
+       
+        $user =User::create([
             'nom' => $request->nom,
             'prenom' => $request->prenom,
             'email' => $request->email,
             'adresse' => $request->adresse,
             'telephone' => $request->telephone,
             'password' => $request->passwd,
-            'profils' => 'client'
+            'profil' => 'Client'
         ]);
         if($user){
             Client::firstOrCreate([
                 'users_id' => $user->id
             ]);
         }
-
+        $mailable = new SignUpConfirmation($request->nom, $request->prenom, $request->email);
+        Mail::to($request->email)->send($mailable);
+        session(['user' => $user]);
       //  flash("Vehicule crée avec succés!", "success");
-        return redirect()->route('sign_up');
+        return redirect()->route('sign_in');
     }
 
     /**

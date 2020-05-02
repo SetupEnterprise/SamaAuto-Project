@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 
 Route::get('/sign_in', function () {
+    session()->forget('user');
     return view('authentification.auth');
 })->name('sign_in');
 
