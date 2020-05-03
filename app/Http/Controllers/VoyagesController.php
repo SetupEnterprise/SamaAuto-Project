@@ -74,6 +74,7 @@ class VoyagesController extends Controller
      */
     public function store(Request $request)
     {
+        $control = new Control;
         //dd($request->date_voyage->format('d-m-Y'));
         $this->validate($request, [
             'matricule' => 'required | string | min:5 | max:20 ',
@@ -83,20 +84,20 @@ class VoyagesController extends Controller
             'heure_de_depart' => 'required '
         ]);
 
-        $ville_de_depart = ucfirst(strtolower($request->ville_de_depart));
-        $ville_de_destination = ucfirst(strtolower($request->ville_de_destination));
+        $ville_de_depart = $control->mettre_en_majuscule($request->ville_de_depart);
+        $ville_de_destination = $control->mettre_en_majuscule($request->ville_de_destination);
+        $matricule = $control->mettre_en_majuscule($request->matricule);
+        //$date_voyage = date('d/m/Y', strtotime($request->date_voyage));
+        $date_voyage = $request->date_voyagegit ;
 
         /* Vérication ville départ != ville destination */
-        if ($ville_de_depart == $ville_de_destination) {
-            session()->flash('messageVilleEgale',"La ville de départ ne peut être la même chose que la ville de destionation ");
-            return back();
-        }
+        $control->verif_ville_egal($ville_de_depart, $ville_de_destination);
 
         /* Vérification du matricule */
             # code...
-        if (Vehicule::where('matricule',$request->matricule)->count() <= 0) {
+        if (Vehicule::where('matricule',$matricule)->count() == 0) {
             session()->flash('messageMatriculeNoExiste',"Aucun véhicule de cette matricule ".$request->matricule."
-            n'existe enregistré");
+            n'est enregistré");
             return back();
         }else{
             $vehicules_id = DB::table('vehicules')
@@ -129,11 +130,22 @@ class VoyagesController extends Controller
             $vehicule = $v->vehicules_id;
         }
 
+        //Verification si le voyage est déja crée
+        if (DB::table('vehicule_trajets')
+            ->where('vehicules_id',$vehicule)
+            ->where('trajets_id', $trajet)
+            ->where('date_voyage', $date_voyage)
+            ->where('heure_de_depart', $request->heure_de_depart)
+            ->count() == 1) {
+            session()->flash('messageVoyageExiste',"Il semble qu'un voyage a déjâ été créé a cette date et cette même heure");
+            return back();
+        }
+
         //Insertion dans la base de données
         $ajoutVehiculeTrajet = new VehiculeTrajet;
         $ajoutVehiculeTrajet->vehicules_id = $vehicule;
         $ajoutVehiculeTrajet->trajets_id = $trajet;
-        $ajoutVehiculeTrajet->date_voyage = $request->date_voyage;
+        $ajoutVehiculeTrajet->date_voyage = $date_voyage;
         $ajoutVehiculeTrajet->heure_de_depart = $request->heure_de_depart;
         $ajoutVehiculeTrajet->save();
 
@@ -160,10 +172,16 @@ class VoyagesController extends Controller
 
         foreach ($voirVoyage as $vv ) {
             $vehicules_id = $vv->vehicules_id;
+            $date_voyage = $vv->date_voyage;
+            $heure =$vv->heure_de_depart;
+            $listeId = explode('-', $date_voyage, 3);
+            $annee = $listeId[0];
+            $mois = $listeId[1];
+            $jours = $listeId[2];
         }
         $control = new Control;
         $infoCategorie = $control->infoVehiculesFromVoyage($vehicules_id);
-        return view('gerant.voyage.voir-voyage', compact('voirVoyage', 'infoCategorie'));
+        return view('gerant.voyage.voir-voyage', compact('voirVoyage', 'infoCategorie','annee','mois','jours','heure'));
     }
 
     /**

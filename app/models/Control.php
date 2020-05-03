@@ -9,6 +9,22 @@ use App\models\Vehicule;
 
 class Control extends Model
 {
+    public function verif_ville_egal($ville_depart, $ville_arrivee)
+    {
+        if ($ville_depart == $ville_arrivee) {
+            session()->flash('messageVilleEgale',"La ville de départ ne peut être la même chose que la ville de destination ");
+            return back();
+        }
+    }
+    public function convention_primary_key_string($request)
+    {
+        return ucfirst(strtolower($request));
+    }
+
+    public function mettre_en_majuscule($request)
+    {
+        return strtoupper($request);
+    }
     public function infoVehiculesFromVoyage($id)
     {
         $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();

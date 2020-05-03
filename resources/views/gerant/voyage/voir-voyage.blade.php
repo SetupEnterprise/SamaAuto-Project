@@ -3,6 +3,7 @@
 @section('contenu_page')
 
 <!-- Content Row -->
+@include('gerant.voyage.compte-a-rebours')
 <div class="row">
     @foreach ($voirVoyage as $vv)
         <div class="col-xl-8 col-lg-7">

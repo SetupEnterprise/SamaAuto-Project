@@ -2,10 +2,6 @@
 
 @section('contenu_page')
 
-<!-- Titre de la page -->
-{{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Ajouter véhicule</h1>
-</div> --}}
 {{-- Informations du tableau --}}
 <div class="row">
     @if(session()->has('messageTrajetAjouter'))
@@ -40,7 +36,7 @@
                         <th>Numéro</th>
                         <th>Ville de départ</th>
                         <th>Ville de destination</th>
-                        <th>Prix du voyage</th>
+                        <th>Prix du voyage (en Fcfa)</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -49,9 +45,9 @@
                 <tbody>
                     @foreach ($listeTrajet as $lt)
                         <tr>
-                            <td class="justify-content-center">1</td>
-                            <td>{{ $lt->point_depart }}</td>
-                            <td>{{ $lt->point_arrivee }}</td>
+                            <td class="justify-content-center"> 1 </td>
+                            <td>{{ ucfirst(strtolower($lt->point_depart)) }}</td>
+                            <td>{{ ucfirst(strtolower($lt->point_arrivee)) }}</td>
                             <td>{{ $lt->prix }}</td>
                             <td>
                                 <a class="btn btn-success"

@@ -7,14 +7,19 @@
 <div class="row">
     <div class="col-lg-12">
         <div class="row">
-            @if(session()->has('messageTrajetAjouter'))
+            @if(session()->has('messageVilleEgale'))
                 <span class="alert alert-danger">
-                {{ session()->get('messageTrajetAjouter') }}
+                {{ session()->get('messageVilleEgale') }}
                 </span>
             @endif
-            @if(session()->has('messageTrajetEgale'))
+            @if(session()->has('messageTrajetExiste'))
                 <span class="alert alert-danger">
-                {{ session()->get('messageTrajetEgale') }}
+                {{ session()->get('messageTrajetExiste') }}
+                </span>
+            @endif
+            @if(session()->has('messagePrixNegatif'))
+                <span class="alert alert-danger">
+                {{ session()->get('messagePrixNegatif') }}
                 </span>
             @endif
         </div>

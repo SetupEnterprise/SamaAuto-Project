@@ -19,6 +19,7 @@
   <link href="{{ asset('theme-asset/css/sb-admin-2.min.css')}}" rel="stylesheet">
   <link href="{{ asset('theme-asset/js/sweetalert.css')}}" rel="stylesheet">
   <link href="{{ asset('css/add_design_gerant.css')}}" rel="stylesheet">
+  <link href="{{ asset('css/compte_a_rebours_design.css')}}" rel="stylesheet">
 
 </head>
 
