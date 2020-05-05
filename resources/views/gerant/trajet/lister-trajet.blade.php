@@ -9,6 +9,11 @@
             {{ session()->get('messageTrajetAjouter') }}
         </span>
     @endif
+    @if(session()->has('messageTrajetModifier'))
+        <span class="alert alert-success">
+            {{ session()->get('messageTrajetModifier') }}
+        </span>
+    @endif
 </div>
 
 @if ($listeTrajet->isEmpty())

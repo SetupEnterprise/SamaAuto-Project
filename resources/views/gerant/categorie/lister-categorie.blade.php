@@ -8,6 +8,11 @@
             {{ session()->get('messageCategorieEnregistrer') }}
         </span>
     @endif
+    @if(session()->has('messageCategorieModifier'))
+        <span class="alert alert-success">
+        {{ session()->get('messageCategorieModifier') }}
+        </span>
+    @endif
 </div>
 
 @if ($listeCategorie->isEmpty())
@@ -48,10 +53,10 @@
                         <td scope="row">{{ $lc->categorie}}</td>
                         <td scope="row">{{ $lc->nbre_place}}</td>
                         <td scope="row">
-                            <a class="btn btn-primary"
-                            href="{{ route('categorie.show',['categorie'=>$lc->categories_id]) }}" role="button">
+                            <a class="btn btn-primary" href="{{ route('categorie.show',['categorie'=>$lc->categories_id]) }}" role="button">
                                 Modifier
                             </a>
+                            {{-- @include('gerant.update') --}}
                             <a class="btn btn-danger" href="#" role="button">
                                 Supprimer
                             </a>

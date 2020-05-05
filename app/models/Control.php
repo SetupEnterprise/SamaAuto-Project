@@ -9,6 +9,10 @@ use App\models\Vehicule;
 
 class Control extends Model
 {
+    public function recup_date_time_now()
+    {
+        return date('Y-m-d H:i:s');
+    }
     public function verif_ville_egal($ville_depart, $ville_arrivee)
     {
         if ($ville_depart == $ville_arrivee) {
@@ -19,6 +23,15 @@ class Control extends Model
     public function convention_primary_key_string($request)
     {
         return ucfirst(strtolower($request));
+
+    }
+    public function verif_si_nombre_est_negatif($request)
+    {
+        if ($request <= 0) {
+            session()->flash('messageCategorieNegatif',"Le nombre de places du catégorie de véhicule ne peut être négatif ou null");
+            return back();
+        }
+
     }
 
     public function mettre_en_majuscule($request)

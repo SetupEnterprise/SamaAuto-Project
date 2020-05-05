@@ -118,16 +118,18 @@ class VehiculesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->index();
-
-        /* //Requete de mise à jour
-        $affected = DB::table('vehicules')
+        $this->validate($request,[
+            'matricule' => 'required | min:2 |string'
+        ]);
+        //Requete de mise à jour
+        DB::table('vehicules')
                   ->where('vehicules_id', $id)
                   ->update([
                         'categories_id' => $request->categorie,
                       ]);
 
-        return $this->index(); */
+        session()->flash('messageVehiculeModifier','Le véhicule '.$request->matricule.' est modifié avec succès');
+        return $this->index();
     }
 
     /**

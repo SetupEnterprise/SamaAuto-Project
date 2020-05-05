@@ -8,6 +8,11 @@
             {{ session()->get('messageMatriculeEnregistrer') }}
         </span>
     @endif
+    @if(session()->has('messageVehiculeModifier'))
+        <span class="alert alert-success">
+            {{ session()->get('messageVehiculeModifier') }}
+        </span>
+    @endif
 </div>
 
 @if ($listeVehicule->isEmpty())
