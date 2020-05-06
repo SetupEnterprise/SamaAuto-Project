@@ -47,6 +47,7 @@ class CategorieController extends Controller
             'categorie' => 'required | min:2 |string',
             'nombre_de_places' => 'required | integer',
         ]);
+        /* //Appel de methode */
         $categorie = $control->convention_primary_key_string($request->categorie);
 
         $control->verif_si_nombre_est_negatif($request->nombre_de_places);
