@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\models\Categorie;
 use App\models\Vehicule;
+use Illuminate\Support\Facades\DB;
 
 class Control extends Model
 {
@@ -38,6 +39,20 @@ class Control extends Model
     {
         return strtoupper($request);
     }
+
+    //Base de données
+    public function voirUnArret($id)
+    {
+        return Arret::where('arrets_id',$id)
+                ->firstOrFail();
+    }
+
+    public function recupererTrajet($trajets_id)
+    {
+        return Trajet::where('trajets_id',$trajets_id)
+                ->firstOrFail();
+    }
+
     public function infoVehiculesFromVoyage($id)
     {
         $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();

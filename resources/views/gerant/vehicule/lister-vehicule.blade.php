@@ -63,10 +63,10 @@
                         Modifier
                     </a>
 
-                    <a class="btn btn-danger" href="#" role="button">
+                    @include('gerant.vehicule.delete-vehicule')
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
                         Supprimer
-
-                    </a>
+                    </button>
                 </td>
             </tr>
             @endforeach

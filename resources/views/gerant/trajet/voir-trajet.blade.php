@@ -1,7 +1,7 @@
 @extends('layouts.master_gerant')
 
 @section('contenu_page')
-    <!-- Content Row -->
+<!-- Content Row -->
 <div class="row">
     <div class="col-lg-12">
         {{-- Affichage erreur --}}

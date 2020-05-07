@@ -56,10 +56,6 @@
                             <a class="btn btn-primary" href="{{ route('categorie.show',['categorie'=>$lc->categories_id]) }}" role="button">
                                 Modifier
                             </a>
-                            {{-- @include('gerant.update') --}}
-                            <a class="btn btn-danger" href="#" role="button">
-                                Supprimer
-                            </a>
                         </td>
                     </tr>
                 @endforeach

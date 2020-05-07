@@ -9,6 +9,11 @@
             {{ session()->get('messageArretAjouter') }}
         </span>
     @endif
+    @if(session()->has('messageArretModifier'))
+        <span class="alert alert-success">
+            {{ session()->get('messageArretModifier') }}
+        </span>
+    @endif
 </div>
 @if ($listeArret->isEmpty())
     <div class="row">

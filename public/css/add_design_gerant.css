@@ -11,3 +11,8 @@ th {
 td {
     text-align: center;
 }
+
+#supprimer_info {
+    font-weight: bold;
+    text-decoration: underline;
+}

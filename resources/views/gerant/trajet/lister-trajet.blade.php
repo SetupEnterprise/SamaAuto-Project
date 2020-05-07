@@ -63,7 +63,7 @@
                                 href="{{ route('trajet.show',['trajet'=>$lt->trajets_id]) }}" role="button">
                                 Modifier
                                 </a>
-                                <a class="btn btn-danger" href="#" role="button">
+                                <a class="btn btn-danger" href="{{ route('trajet.destroy',['trajet'=>$lt->trajets_id]) }}" role="button">
                                     Supprimer
                                 </a>
                             </td>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\models\Arret;
+use App\models\Control;
 use App\models\Trajet;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -59,7 +60,7 @@ class ArretsController extends Controller
             ->where('trajets_id','=',$request->trajet)
             ->where('nom_arret', '=', $request->nom_arret)
             ->where('region', '=', $request->region)
-            ->count() >=1)
+            ->count() ==1)
         {
             session()->flash('messageArretExiste',"L'arrêt ".$request->nom_arret." existe déjà");
             return back();
@@ -87,10 +88,8 @@ class ArretsController extends Controller
      */
     public function show($id)
     {
-        $listeArret = DB::table('arrets')
-            ->join('trajets','trajets.trajets_id','=','arrets.trajets_id')
-            ->where('trajets.trajets_id',$id)
-            ->get();
+        $control = new Control;
+        $listeArret = $control->voirUnArret($id);
         $trajet = DB::table('trajets')
             ->select('point_depart','point_arrivee')
             ->get()
@@ -106,8 +105,10 @@ class ArretsController extends Controller
      */
     public function edit($id)
     {
-        $id = 1;
-        return view('gerant.arret.voir-arret', compact('id'));
+        $control = new Control;
+        $listerUnArret = $control->voirUnArret($id);
+        $infoTrajet = $control->recupererTrajet($listerUnArret->trajets_id);
+        return view('gerant.arret.voir-arret', compact('listerUnArret','infoTrajet'));
     }
 
     /**
@@ -119,7 +120,31 @@ class ArretsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->index();
+        $control = new Control;
+        $this->validate($request,[
+            'nom_arret' => 'required | min:3 | string',
+            'region' => 'required | min:4 | string'
+        ]);
+        if (DB::table('arrets')
+                ->where('nom_arret', $request->nom_arret)
+                ->count() == 1) {
+            session()->flash('messageArretExiste',"L'arrêt ".$request->nom_arret." existe déjà");
+            return back();
+        } else {
+            $updated_at = $control->recup_date_time_now();
+
+                DB::table('arrets')
+                        ->where('arrets_id', $id)
+                        ->update([
+                            'nom_arret' => $request->nom_arret,
+                            'region' => $request->region,
+                            'localisation' => $request->localisation,
+                            'updated_at' => $updated_at,
+                        ]);
+            session()->flash('messageArretModifier',"L'arrêt ".$request->nom_arret." est modifié avec succès");
+            return $this->index();
+        }
+
     }
 
     /**

@@ -140,6 +140,11 @@ class VehiculesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('users')->where('votes', '>', 100)->delete();
+    }
+
+    public function supprimer_vehicule($id)
+    {
+        return $this->index();
     }
 }
