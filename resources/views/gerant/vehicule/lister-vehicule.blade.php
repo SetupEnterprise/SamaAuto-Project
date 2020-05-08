@@ -13,6 +13,11 @@
             {{ session()->get('messageVehiculeModifier') }}
         </span>
     @endif
+    @if(session()->has('messageVehiculeSupprimer'))
+        <span class="alert alert-success">
+            {{ session()->get('messageVehiculeSupprimer') }}
+        </span>
+    @endif
 </div>
 
 @if ($listeVehicule->isEmpty())

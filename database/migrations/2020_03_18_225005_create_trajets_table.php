@@ -18,6 +18,7 @@ class CreateTrajetsTable extends Migration
             $table->string('point_depart',100);
             $table->string('point_arrivee',100);
             $table->integer('prix');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

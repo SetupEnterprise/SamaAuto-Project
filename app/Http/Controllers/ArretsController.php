@@ -21,6 +21,7 @@ class ArretsController extends Controller
         //Jointure
         $listeArret = DB::table('arrets')
             ->join('trajets','trajets.trajets_id','=','arrets.trajets_id')
+            ->where('arrets.is_deleted', '=', 0)
             ->get();
         return view('gerant.arret.lister-arret', compact('listeArret'));
     }
@@ -156,5 +157,17 @@ class ArretsController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function supprimer_arret($id)
+    {
+        DB::table('arrets')
+                  ->where('arrets_id', $id)
+                  ->update([
+                        'is_deleted' => 1,
+                      ]);
+
+        session()->flash("messageArretSupprimer","L'arret  est supprimé avec succès");
+        return $this->index();
     }
 }

@@ -7,7 +7,7 @@
     <div class="col-lg-12">
         <div class="row">
             @if(session()->has('messageMatriculeExiste'))
-                <span class="alert alert-success">
+                <span class="alert alert-danger">
                 {{ session()->get('messageMatriculeExiste') }}
             </span>
             @endif

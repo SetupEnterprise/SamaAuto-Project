@@ -33,9 +33,12 @@ Route::resource('arret','ArretsController');
 Route::resource('voyage','VoyagesController');
 Route::resource('user','UsersController');
 
-Route::get('/vehicule/{id}/supprimer_vehicule', function ($id) {
+Route::get('/supprimer_vehicule/{id}','VehiculesController@supprimer_vehicule');
+Route::get('/supprimer_voyage/{id}','VoyagesController@supprimer_voyage');
+Route::get('/supprimer_arret/{id}','ArretsController@supprimer_arret');
+/* Route::get('/vehicule/{id}/supprimer_vehicule', function ($id) {
     //
-})->name('supprimer_vehicule');
+})->name('supprimer_vehicule'); */
 
 /* Route::get('/voyage/action', 'VoyagesController@action')->name('voyage.action');
  */

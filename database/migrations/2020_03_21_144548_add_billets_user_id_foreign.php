@@ -24,11 +24,11 @@ class AddBilletsUserIdForeign extends Migration
             $table->foreign('trajets_id')
                  ->references('trajets_id')
                  ->on('trajets')
-                 ->onDelete('cascade')
+                 ->onDelete('restrict')
                  ->onUpdate('cascade');
         });
 
-        
+
     }
 
     /**

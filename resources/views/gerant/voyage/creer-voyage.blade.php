@@ -35,6 +35,11 @@
                     {{ session()->get('messageVoyageExiste') }}
                 </span>
             @endif
+            @if(session()->has('messageErreurDate'))
+                <span class="alert alert-danger">
+                    {{ session()->get('messageErreurDate') }}
+                </span>
+            @endif
 
 
         </div>

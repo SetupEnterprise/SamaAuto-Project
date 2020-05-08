@@ -19,7 +19,7 @@ class AddVehiculeTrajetsVehiculesIdForeign extends Migration
             $table->foreign('vehicules_id')
                   ->references('vehicules_id')
                   ->on('vehicules')
-                  ->onDelete('cascade')
+                  ->onDelete('restrict')
                   ->onUpdate('cascade');
         });
     }

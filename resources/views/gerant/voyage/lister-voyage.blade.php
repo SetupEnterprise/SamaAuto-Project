@@ -1,6 +1,19 @@
 @extends('layouts.master_gerant')
 
 @section('contenu_page')
+<div class="row">
+
+    @if(session()->has('messageVoyageCreate'))
+        <span class="alert alert-success">
+        {{ session()->get('messageVoyageCreate') }}
+        </span>
+    @endif
+    @if(session()->has('messageVoyageSupprimer'))
+        <span class="alert alert-success">
+        {{ session()->get('messageVoyageSupprimer') }}
+        </span>
+    @endif
+</div>
 
 @if ($listeVoyage->isEmpty())
     <div class="row">
@@ -50,10 +63,10 @@
                                         Modifier
 
                                     </a>
-                                    <a class="btn btn-danger" href="#" role="button">
+                                    @include('gerant.voyage.delete-voyage')
+                                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
                                         Supprimer
-
-                                    </a>
+                                    </button>
                                 </td>
                             </tr>
                         @endforeach

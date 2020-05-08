@@ -18,7 +18,7 @@ class AddComptablesUserIdForeign extends Migration
             $table->foreign('users_id')
                     ->references('users_id')
                     ->on('users')
-                    ->onDelete('cascade')
+                    ->onDelete('restrict')
                     ->onUpdate('cascade');
         });
     }

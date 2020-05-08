@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\DB;
 
 class Control extends Model
 {
+    public function recup_time()
+    {
+        return date('H:i:s');
+    }
     public function recup_date_time_now()
     {
         return date('Y-m-d H:i:s');
@@ -51,6 +55,13 @@ class Control extends Model
     {
         return Trajet::where('trajets_id',$trajets_id)
                 ->firstOrFail();
+    }
+
+    public function infoArretsFromVoyage($trajets_id)
+    {
+        $voirArret = Arret::where('trajets_id',$trajets_id)
+                            ->get();
+        return $voirArret;
     }
 
     public function infoVehiculesFromVoyage($id)
