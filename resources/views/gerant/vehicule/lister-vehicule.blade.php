@@ -2,25 +2,42 @@
 
 @section('contenu_page')
 
-<!-- Titre de la page -->
-{{-- <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">Ajouter véhicule</h1>
-</div> --}}
+<div class="row">
+    @if(session()->has('messageMatriculeEnregistrer'))
+        <span class="alert alert-success">
+            {{ session()->get('messageMatriculeEnregistrer') }}
+        </span>
+    @endif
+    @if(session()->has('messageVehiculeModifier'))
+        <span class="alert alert-success">
+            {{ session()->get('messageVehiculeModifier') }}
+        </span>
+    @endif
+    @if(session()->has('messageVehiculeSupprimer'))
+        <span class="alert alert-success">
+            {{ session()->get('messageVehiculeSupprimer') }}
+        </span>
+    @endif
+</div>
+
+@if ($listeVehicule->isEmpty())
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="design_text_voyage" class="text-lg">
+                <h3>Aucun véhicule n'est encore enregistré</h3>
+                <a class="btn btn-primary" href="{{ route('vehicule.create') }}" role="button">
+                Ajouter véhicule
+                </a>
+            </div>
+        </div>
+    </div>
+@else
 {{-- Informations du tableau --}}
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Liste des véhicules</h6>
     </div>
-    @if ($listeVehicule->isEmpty())
-        <div class="col-lg-3">
-        <a class="btn btn-primary" href="{{ route('vehicule.create') }}" role="button">
-            Ajouter véhicule
-        </a>
-    </div>
-        <h3>
-            Aucun véhicule n'est encore enregistré
-        </h3>
-    @else
+
         <div class="card-body">
         <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -29,7 +46,7 @@
             <tr>
                 <th>Identifiant</th>
                 <th>Matricule</th>
-                <th>Action</th>
+                <th>Actions</th>
             </tr>
             </thead>
 
@@ -38,22 +55,23 @@
 
             @foreach ($listeVehicule as $lc)
             <tr>
-                <td scope="row">{{ $lc->vehicules_id}}</td>
-                <td scope="row">{{ $lc->matricule}}</td>
-                <td scope="row">
+                <td>{{ $lc->vehicules_id}}</td>
+                <td>{{ $lc->matricule}}</td>
+                <td>
                     <a class="btn btn-success"
                     href="{{ route('vehicule.show',['vehicule'=>$lc->vehicules_id]) }}" role="button">
-                        Voir
+                        Plus d'infos
                     </a>
+
                     <a class="btn btn-primary"
                     href="{{ route('vehicule.edit',['vehicule'=>$lc->vehicules_id.' '.$lc->categories_id]) }}" role="button">
                         Modifier
-
                     </a>
-                    <a class="btn btn-danger" href="#" role="button">
+
+                    @include('gerant.vehicule.delete-vehicule')
+                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#staticBackdrop">
                         Supprimer
-
-                    </a>
+                    </button>
                 </td>
             </tr>
             @endforeach

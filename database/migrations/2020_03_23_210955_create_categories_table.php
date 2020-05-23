@@ -17,6 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->bigIncrements('categories_id');
             $table->string('categorie', 100);
             $table->integer('nbre_place');
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

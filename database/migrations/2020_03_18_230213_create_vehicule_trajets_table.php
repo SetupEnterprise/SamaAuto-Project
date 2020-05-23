@@ -17,6 +17,8 @@ class CreateVehiculeTrajetsTable extends Migration
             $table->bigIncrements('vehicule_trajet_id');
             $table->date('date_voyage');
             $table->time('heure_de_depart');
+            $table->boolean('is_deleted')->default(0);
+            $table->boolean('is_past')->default(0);
             $table->timestamps();
         });
     }

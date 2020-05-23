@@ -3,30 +3,38 @@
 @section('contenu_page')
 
 {{-- Informations du tableau --}}
-<div class="col-lg-12">
-    <div class="col-lg-2"></div>
-    <div class="col-lg-10">
-        @if(session()->has('messageArretAjouter'))
-            <span class="alert alert-success">
-                {{ session()->get('messageArretAjouter') }}
-            </span>
-        @endif
-    </div>
+<div class="row">
+    @if(session()->has('messageArretAjouter'))
+        <span class="alert alert-success">
+            {{ session()->get('messageArretAjouter') }}
+        </span>
+    @endif
+    @if(session()->has('messageArretModifier'))
+        <span class="alert alert-success">
+            {{ session()->get('messageArretModifier') }}
+        </span>
+    @endif
+    @if(session()->has('messageArretSupprimer'))
+        <span class="alert alert-success">
+            {{ session()->get('messageArretSupprimer') }}
+        </span>
+    @endif
 </div>
-
 @if ($listeArret->isEmpty())
-    <div class="col-lg-3">
-        <a class="btn btn-primary" href="{{ route('arret.create') }}" role="button">
-            Ajouter arret
-        </a>
+    <div class="row">
+        <div class="col-lg-12">
+            <div id="design_text_voyage" class="text-lg">
+                <h3>Aucun arrêt de véhicule n'est encore enregistré</h3>
+                <a class="btn btn-primary" href="{{ route('arret.create') }}" role="button">
+                Ajouter arrêt
+                </a>
+            </div>
+        </div>
     </div>
-        <h3>
-            Aucun arret de véhicule n'est encore enregistré
-        </h3>
 @else
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Liste des arrets</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Liste des arrêts</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -34,7 +42,7 @@
                 {{-- En tete tableau --}}
                 <thead>
                     <tr>
-                        <th>Numéro</th>
+                        <th>Identifiant</th>
                         <th>Région</th>
                         <th>Nom de l'arret</th>
                         <th>Trajet</th>
@@ -47,7 +55,7 @@
                     @foreach ($listeArret as $la)
 
                         <tr>
-                            <td>1</td>
+                            <td>{{ $la->arrets_id }}</td>
                             <td>{{ $la->region }}</td>
                             <td>{{ $la->nom_arret }}</td>
                             <td>{{ $la->point_depart}} - {{ $la->point_arrivee }}</td>

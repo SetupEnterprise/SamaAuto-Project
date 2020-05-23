@@ -18,6 +18,7 @@ class CreateArretsTable extends Migration
             $table->string('nom_arret');
             $table->string('region');
             $table->string('localisation')->nullable();
+            $table->boolean('is_deleted')->default(0);
             $table->timestamps();
         });
     }

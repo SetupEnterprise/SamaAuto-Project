@@ -18,7 +18,7 @@ class AddVehiculesCategoriesIdForeign extends Migration
             $table->foreign('categories_id')
                   ->references('categories_id')
                   ->on('categories')
-                  ->onDelete('cascade')
+                  ->onDelete('restrict')
                   ->onUpdate('cascade');
         });
     }

@@ -6,9 +6,64 @@ use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use App\models\Categorie;
 use App\models\Vehicule;
+use Illuminate\Support\Facades\DB;
 
 class Control extends Model
 {
+    public function recup_time()
+    {
+        return date('H:i:s');
+    }
+    public function recup_date_time_now()
+    {
+        return date('Y-m-d H:i:s');
+    }
+    public function verif_ville_egal($ville_depart, $ville_arrivee)
+    {
+        if ($ville_depart == $ville_arrivee) {
+            session()->flash('messageVilleEgale',"La ville de départ ne peut être la même chose que la ville de destination ");
+            return back();
+        }
+    }
+    public function convention_primary_key_string($request)
+    {
+        return ucfirst(strtolower($request));
+
+    }
+    public function verif_si_nombre_est_negatif($request)
+    {
+        if ($request <= 0) {
+            session()->flash('messageCategorieNegatif',"Le nombre de places du catégorie de véhicule ne peut être négatif ou null");
+            return back();
+        }
+
+    }
+
+    public function mettre_en_majuscule($request)
+    {
+        return strtoupper($request);
+    }
+
+    //Base de données
+    public function voirUnArret($id)
+    {
+        return Arret::where('arrets_id',$id)
+                ->firstOrFail();
+    }
+
+    public function recupererTrajet($trajets_id)
+    {
+        return Trajet::where('trajets_id',$trajets_id)
+                ->firstOrFail();
+    }
+
+    public function infoArretsFromVoyage($trajets_id)
+    {
+        $voirArret = Arret::where('trajets_id',$trajets_id)
+                            ->get();
+        return $voirArret;
+    }
+
     public function infoVehiculesFromVoyage($id)
     {
         $voirVehicule = Vehicule::where('vehicules_id',$id)->firstOrFail();

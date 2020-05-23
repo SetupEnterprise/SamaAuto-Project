@@ -7,6 +7,7 @@ use App\models\Categorie;
 use App\models\Vehicule;
 use App\models\Control;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class VehiculesController extends Controller
 {
@@ -18,7 +19,8 @@ class VehiculesController extends Controller
 
     public function index()
     {
-        $listeVehicule = Vehicule::all();
+        $listeVehicule = Vehicule::where('is_deleted', 0)
+                            ->get();
         return view('gerant.vehicule.lister-vehicule', compact('listeVehicule'));
     }
 
@@ -42,19 +44,21 @@ class VehiculesController extends Controller
      */
     public function store(Request $request)
     {
+        //$string = Str::of($request->matricule)->ltrim('/');
         //Récupération des données depuis le formulaire d'ajout de type de véhicule
         //Gestion des erreurs
         $this->validate($request,[
             'matricule' => 'required | min:2 |string',
-            //image_vehicule à gérer apres la validation
-            //'image_vehicule' => 'required | image | mimes:jpeg,png,jpg,gif,svg',
-            'categories_id' => 'required ',
+            'image_vehicule' => 'required | image | mimes:jpeg,png,jpg,gif,svg',
+            'categories_id' => 'required '
         ]);
 
-        //dd($request->file('image_vehicule'));
         $matricule = strtoupper($request->matricule);
+
         //Verifier si le matricule du véhicule existe déjà
-        if(Vehicule::where('matricule',$matricule)->count() >=1)
+        if(Vehicule::where('matricule',$matricule)
+                    ->where('is_deleted', 0)
+                    ->count() ==1)
         {
             session()->flash('messageMatriculeExiste','Le matricule du véhicule '.$request->matricule.' existe déjà');
             return back();
@@ -62,7 +66,7 @@ class VehiculesController extends Controller
         if ($files = $request->file('image_vehicule')) {
             // Definir le chemin du fichier
             $destinationPath = public_path('/image_vehicule/'); // upload path
-            $image_vehicule = date('YmdHis') . "." . $files->getClientOriginalExtension();
+            $image_vehicule = date('dmYHis') . "." . $files->getClientOriginalExtension();
 
             //Ajout dans la base de données
             $ajoutVehicule = new Vehicule;
@@ -75,6 +79,7 @@ class VehiculesController extends Controller
             $files->move($destinationPath, $image_vehicule);
             $insert['image'] = "$image_vehicule";
 
+            session()->flash('messageMatriculeEnregistrer','Le véhicule '.$matricule.' est enregistré avec succès');
             return $this->index();
         }
     }
@@ -115,16 +120,21 @@ class VehiculesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->index();
-
-        /* //Requete de mise à jour
-        $affected = DB::table('vehicules')
+        $control = new Control;
+        $this->validate($request,[
+            'matricule' => 'required | min:2 |string'
+        ]);
+        //Requete de mise à jour
+        $updated_at = $control->recup_date_time_now();
+        DB::table('vehicules')
                   ->where('vehicules_id', $id)
                   ->update([
                         'categories_id' => $request->categorie,
+                        'updated_at' => $updated_at,
                       ]);
 
-        return $this->index(); */
+        session()->flash('messageVehiculeModifier','Le véhicule '.$request->matricule.' est modifié avec succès');
+        return $this->index();
     }
 
     /**
@@ -135,6 +145,18 @@ class VehiculesController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+    }
+
+    public function supprimer_vehicule($id)
+    {
+        DB::table('vehicules')
+                  ->where('vehicules_id', $id)
+                  ->update([
+                        'is_deleted' => 1,
+                      ]);
+
+        session()->flash('messageVehiculeSupprimer','Le véhicule  est supprimé avec succès');
+        return $this->index();
     }
 }

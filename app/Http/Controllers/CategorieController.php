@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\models\Categorie;
+use App\models\Control;
 use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
@@ -17,7 +18,7 @@ class CategorieController extends Controller
     public function index()
     {
         $listeCategorie = Categorie::all();
-        return view('gerant.lister-categorie', compact('listeCategorie'));
+        return view('gerant.categorie.lister-categorie', compact('listeCategorie'));
     }
 
     /**
@@ -28,7 +29,7 @@ class CategorieController extends Controller
     public function create()
     {
         //Formulaire ajouter catégorie véhicule
-        return view('gerant.ajouter-type');
+        return view('gerant.categorie.ajouter-type');
     }
 
     /**
@@ -39,13 +40,17 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
+        $control = new Control;
         //Récupération des données depuis le formulaire d'ajout de type de véhicule
         //Gestion des erreurs
         $this->validate($request,[
             'categorie' => 'required | min:2 |string',
-            'nbre_place' => 'required | integer',
+            'nombre_de_places' => 'required | integer',
         ]);
-        $categorie = ucfirst(strtolower($request->categorie));
+        /* //Appel de methode */
+        $categorie = $control->convention_primary_key_string($request->categorie);
+
+        $control->verif_si_nombre_est_negatif($request->nombre_de_places);
 
         //Verifier si la catégorie de véhicule existe déjà
         if(Categorie::where('categorie',$categorie)->count() >=1)
@@ -55,11 +60,12 @@ class CategorieController extends Controller
         }
 
         //Insertion dans la base de données
-        Categorie::create([
-            'categorie'=>$categorie,
-            'nbre_place'=>$request->nbre_place
-        ]);
-        //flash("La catégorie véhicule ".$request->type." a été ajouté avec succès");
+        $ajoutCategorie = new Categorie;
+        $ajoutCategorie->categorie = $categorie;
+        $ajoutCategorie->nbre_place = $request->nombre_de_places;
+        $ajoutCategorie->save();
+
+        session()->flash('messageCategorieEnregistrer','La catégorie de véhicule '.$categorie.' est enregistrée avec succès');
         return $this->index();
     }
 
@@ -72,7 +78,7 @@ class CategorieController extends Controller
     public function show($id)
     {
         $voirCategorie = Categorie::where('categories_id',$id)->firstOrFail();
-        return view('gerant.voir-categorie', compact('voirCategorie'));
+        return view('gerant.categorie.voir-categorie', compact('voirCategorie'));
     }
 
     /**
@@ -95,30 +101,36 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        return $this->index();
-        /* //Gestion des erreurs
+        //return $this->index();
+        $control = new Control;
+        //Gestion des erreurs
         $this->validate($request,[
             'categorie' => 'required | min:2 |string',
-            'nbre_place' => 'required | integer',
+            'nombre_de_places' => 'required | integer',
         ]);
-        $categorie = ucfirst(strtolower($request->categorie));
 
-        //Verifier si la catégorie de véhicule existe déjà
-        if(Categorie::where('categorie',$categorie)->count() >=1)
-        {
-            session()->flash('messageCategorieExiste','La catégorie de véhicule '.$request->categorie.' existe déjà');
+        $categorie = $control->convention_primary_key_string($request->categorie);
+
+        $control->verif_si_nombre_est_negatif($request->nombre_de_places);
+        if ($request->nombre_de_places <= 0) {
+            session()->flash('messageCategorieNegatif',"Le nombre de places du catégorie de véhicule ne peut être négatif ou null");
             return back();
+        } else {
+            $updated_at = $control->recup_date_time_now();
+
+            DB::table('categories')
+                    ->where('categories_id', $id)
+                    ->update([
+                        'categorie' => $categorie,
+                        'nbre_place' => $request->nombre_de_places,
+                        'updated_at' => $updated_at,
+                    ]);
+
+            session()->flash('messageCategorieModifier','La catégorie de véhicule '.$categorie.' est modifiée avec succès');
+            return $this->index();
         }
 
-        //Mise à jour de la catégorie de véhicule
-        $affected = DB::table('categories')
-                  ->where('categories_id', $id)
-                  ->update([
-                        'categorie' => $request->categorie,
-                        'nbre_place' => $request->nbre_place,
-                      ]);
 
-        return $this->index(); */
     }
 
     /**
