@@ -61,11 +61,7 @@ Route::get('/admin/stat_billet','AdminController@stat_billet')->name('stat_bille
 Route::get('/admin/stat_vendeur','AdminController@stat_vendeur')->name('stat_vendeur');
 
 
-<<<<<<< HEAD
 Route::get('/gerant/statistiques','GerantsController@statistique')->name('gerantStat');
-=======
-Route::get('/accueil','GerantsController@statistique')->name('gerantStat');
->>>>>>> 4acfc42a710ed1b650d9168ba39414fff9c1c259
 Route::get('/sign_up', 'UsersController@create')->name('sign_up');
 Route::post('/sign_up', 'UsersController@store')->name('sign_up');
 
