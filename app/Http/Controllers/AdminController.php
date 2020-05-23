@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Billet;
+use App\models\Billet;
 use App\models\Client;
 use Illuminate\Http\Request;
 
@@ -86,7 +86,7 @@ class AdminController extends Controller
 
     public function stat_client()
     {
-        $clients = Client::count(); 
+        $clients = Client::count();     
         $data = new DataStatistiqueClient();
         $nbreAuth = $data->nbre_auth(); 
        

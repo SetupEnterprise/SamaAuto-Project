@@ -41,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item">
-        <a class="nav-link" href="{{route('gerantStat')}}">
+        <a class="nav-link" href="{{route('gerant.index')}}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Gérant</span></a>
       </li>
@@ -98,6 +98,7 @@
         </div>
       </li>
 
+      
 
 
 
@@ -141,11 +142,11 @@
       </div> -->
 
       <!-- Nav Item - Charts -->
-      {{-- <li class="nav-item">
+       <li class="nav-item">
       <a class="nav-link" href="{{route('gerantStat')}}">
           <i class="fas fa-fw fa-chart-area"></i>
           <span>Statistiques</span></a>
-      </li> --}}
+      </li> 
 
 
 

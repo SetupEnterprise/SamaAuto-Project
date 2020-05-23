@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Billet;
+use App\models\Billet;
 use App\models\VehiculeTrajet;
 use DateTime;
 use Illuminate\Http\Request;
