@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\models\Categorie;
 use App\models\Vehicule;
 use App\models\Trajet;
+use App\models\VehiculeTrajet;
 
 
 class GerantsController extends Controller
@@ -14,7 +15,13 @@ class GerantsController extends Controller
     {
         $total_vehicule = Vehicule::count();
         $total_trajet = Trajet::count();
-        return view('gerant.statistiques_gerant', compact('total_vehicule','total_trajet'));
+        $total_voyage = VehiculeTrajet::count();
+
+        $data = new DataStatistiqueController();
+        $dates = $data->getAllDateVoyages();
+        $listeVoyage = $data->getAllInfosVoyages();
+       
+        return view('gerant.statistiques_gerant', compact('total_vehicule','total_trajet','total_voyage','dates', 'listeVoyage'));
     }
 
     /**

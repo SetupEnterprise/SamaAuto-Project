@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\DataStatistiqueClient;
 use App\Mail\SignUpConfirmation;
 use Illuminate\Support\Facades\Route;
 
@@ -21,11 +22,15 @@ Route::get('/', function () {
 
 Route::get('/sign_in', function () {
     session()->forget('user');
-    return view('authentification.auth');
+    //require_once  dirname(__DIR__). DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'Http'. DIRECTORY_SEPARATOR . 'Controllers'. DIRECTORY_SEPARATOR . 'DataStatistiqueClient.php';
+    $data = new DataStatistiqueClient();
+    $data->ajouter_vue_auth();
+    return view('authentification.auth', compact('nbreAuth'));
 })->name('sign_in');
 
 //Fonctionnalité du gérant by @Ouzy012
-Route::resource('gerant','GerantsController');
+Route::get('gerant.index','GerantsController@index')->name('gerant.index');
+//Route::get('gerant/vehicule/create','GerantsController@create');
 Route::resource('categorie','CategorieController');
 Route::resource('vehicule','VehiculesController');
 Route::resource('trajet','TrajetsController');
@@ -49,8 +54,14 @@ Route::get('/admin/stat_billet','AdminController@stat_billet')->name('stat_bille
 Route::get('/admin/stat_vendeur','AdminController@stat_vendeur')->name('stat_vendeur');
 
 
-Route::get('/gerant_Statistiques','GerantsController@statistique')->name('gerantStat');
+Route::get('/gerant/statistiques','GerantsController@statistique')->name('gerantStat');
 Route::get('/sign_up', 'UsersController@create')->name('sign_up');
 Route::post('/sign_up', 'UsersController@store')->name('sign_up');
 
-/*** Fin* */
+Route::get('/NbVoyagesMensuels', 'DataStatistiqueController@getDonneesVoyagesMensuels');
+Route::get('/NbBilletsVendus', 'DataStatistiqueController@getDonneesBilletVendu');
+Route::get('/NbBilletsReportes', 'DataStatistiqueController@getDonneesBilletReporte');
+
+Route::get('/test', 'DataStatistiqueController@getBilletVendeur');
+
+/* Fin */

@@ -14,7 +14,7 @@ class AddBilletsVehiculesIdForeign extends Migration
     public function up()
     {
         Schema::table('billets', function (Blueprint $table) {
-            $table->unsignedBigInteger('vehicules_id')->unique()->after('users_id');
+            $table->unsignedBigInteger('vehicules_id')->unique()->after('trajets_id');
            $table->foreign('vehicules_id')
                  ->references('vehicules_id')
                  ->on('vehicules')

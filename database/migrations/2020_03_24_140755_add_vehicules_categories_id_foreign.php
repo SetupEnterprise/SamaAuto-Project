@@ -14,7 +14,7 @@ class AddVehiculesCategoriesIdForeign extends Migration
     public function up()
     {
         Schema::table('vehicules', function (Blueprint $table) {
-            $table->unsignedBigInteger('categories_id')->unique()->after('image_vehicule');
+            $table->unsignedBigInteger('categories_id')->after('image_vehicule');
             $table->foreign('categories_id')
                   ->references('categories_id')
                   ->on('categories')

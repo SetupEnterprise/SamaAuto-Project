@@ -34,7 +34,7 @@
                   <div class="row no-gutters align-items-center">
                     <div class="col mr-2">
                       <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total voyage créé</div>
-                      <div class="h5 mb-0 font-weight-bold text-gray-800">200</div>
+                      <div class="h5 mb-0 font-weight-bold text-gray-800">{{ $total_voyage }}</div>
                     </div>
                     <div class="col-auto">
                       <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -97,41 +97,22 @@
                   <h6 class="m-0 font-weight-bold text-primary">Historiques des voyages</h6>
                 </div>
                 <div class="card-body">
-                  <p> Date : 12/01/2020 </p>
-                    <div class="px-3 py-5 bg-gradient-primary text-white">
-                        heure de depart: 04h30 <br>
-                        Horaire Mbacke<br>
-                        Numéro: 77 852 23 25
-                    </div>
-                <br>
-                    <div class="px-3 py-5 bg-gradient-primary text-white">
-                        heure de depart: 07h30 <br>
-                        Horaire Saint-Louis<br>
-                        Numéro: 77 852 23 25
-                    </div>
-                <br>
-                    <div class="px-3 py-5 bg-gradient-primary text-white">
-                        heure de depart: 10h30 <br>
-                        Horaire Bambey<br>
-                        Numéro: 77 852 23 25</div>
-                  <br>
-                  <hr>
-                  <p> Date : 05/02/2020 </p>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 02h00 <br> Horaire Louga<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 07h00 <br> Horaire Mbour<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 10h0 <br> Horaire Matam<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <hr>
-                  <p> Date : 12/02/2020 </p>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 05h00 <br> Horaire Louga<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 11h40 <br> Horaire Mbour<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <div class="px-3 py-5 bg-gradient-primary text-white">heure de depart: 20h30 <br> Horaire Matam<br> Numéro: 77 852 23 25</div>
-                  <br>
-                  <hr>
+                  @foreach ($dates as $date)
+                    <p> Date : {{$date->date_voyage}}</p>
+                    @foreach ($listeVoyage as $list)
+                        @if ($date->date_voyage == $list->date_voyage)
+                          <div class="px-3 py-5 bg-gradient-primary text-white">
+                            Trajet : {{$list->point_depart}}-{{$list->point_arrivee}} <br>
+                            Heure de depart :  {{$list->heure_de_depart}}<br>
+                            Matricule : {{$list->matricule}} <br>
+                            Categorie : {{ $list->categorie}} <br>
+                            prix : {{ $list->prix}}F CFA
+                          </div>
+                          <br>
+                        @endif
+                    @endforeach
+                    <hr>
+                  @endforeach
                 </div>
               </div>
 
@@ -143,3 +124,9 @@
         </div>
         <!-- /.container-fluid -->
 @stop
+@section('scripts')
+    <!-- Page level plugins -->
+   <script src="{{ asset('chart.js/Chart.min.js')}}"></script>
+
+   <script src={{ asset('js/chart-bar-demo.js')}}></script>
+@endsection

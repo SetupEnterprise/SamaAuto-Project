@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Billet;
+use App\models\Client;
 use Illuminate\Http\Request;
 
 class AdminController extends Controller
@@ -84,7 +86,11 @@ class AdminController extends Controller
 
     public function stat_client()
     {
-        return view('admin.statistiques-client');
+        $clients = Client::count(); 
+        $data = new DataStatistiqueClient();
+        $nbreAuth = $data->nbre_auth(); 
+       
+        return view('admin.statistiques-client', compact('clients', 'nbreAuth'));
     }
 
     public function stat_gerant()
@@ -94,7 +100,10 @@ class AdminController extends Controller
 
     public function stat_billet()
     {
-        return view('admin.statistiques-billet');
+        $totalBillet = Billet::count();
+        $totalReporte = Billet::where('etat','reporte')->count();
+        $totalVendu = Billet::where('etat','vendu')->count();
+        return view('admin.statistiques-billet', compact('totalBillet', 'totalReporte', 'totalVendu'));
     }
 
     public function stat_vendeur()
