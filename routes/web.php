@@ -72,3 +72,16 @@ Route::get('/NbBilletsReportes', 'DataStatistiqueController@getDonneesBilletRepo
 Route::get('/test', 'DataStatistiqueController@getBilletVendeur');
 
 /* Fin */
+
+/* debut Fonctionnalite @RootNygma */
+
+//Fonctionnalité achat billet 
+
+Route::get('billet/billetForm','BilletsController@index')->name('billetForm');
+Route::post('billet/billetForm','BilletsController@store');
+
+//get client page !
+//Route::get('client/home-client','ClientsController@index')->name('clientPage');
+
+
+/* Fin */
