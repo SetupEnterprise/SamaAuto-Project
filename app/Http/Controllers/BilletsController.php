@@ -14,6 +14,7 @@ class BilletsController extends Controller
     public function index()
     {
         //
+        return view('billet.billetForm');
     }
 
     /**
@@ -24,6 +25,7 @@ class BilletsController extends Controller
     public function create()
     {
         //
+        
     }
 
     /**
@@ -35,6 +37,10 @@ class BilletsController extends Controller
     public function store(Request $request)
     {
         //
+        /* $client=Billet::find(cliend_id)->client;
+        $idClient=$client->client_id;
+        $users=Client::find(cliend_id)->users;
+        $telephone= $user->telephone; */
     }
 
     /**
@@ -46,6 +52,7 @@ class BilletsController extends Controller
     public function show($id)
     {
         //
+  
     }
 
     /**
@@ -81,4 +88,6 @@ class BilletsController extends Controller
     {
         //
     }
+// simplified request to get number phone from users table
+    
 }
