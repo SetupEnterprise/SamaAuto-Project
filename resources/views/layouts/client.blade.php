@@ -23,6 +23,7 @@
                         <li><a href="{{ route('billetForm') }}">Acheter billet</a></li>
                         <li><a href="#">Les lignes</a></li>
                         <li><a href="{{ route('gerant.auth') }}">Gérant</a></li>
+                        <li><a href="{{ route('admin_auth') }}">Administrateur</a></li>
                       </ul>
 
             </nav>
