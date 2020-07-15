@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\models\Vehicule;
 use App\models\VehiculeTrajet;
+use DateTime;
 
 class VoyagesController extends Controller
 {
@@ -64,6 +65,11 @@ class VoyagesController extends Controller
      */
     public function create()
     {
+        /* Get nom du mois en anglais */
+        /* $monthNum  = 3;
+        $dateObj   = DateTime::createFromFormat('!m', $monthNum);
+        $monthName = $dateObj->format('F');
+        dd($monthName); */
         return view('gerant.voyage.creer-voyage');
     }
 
