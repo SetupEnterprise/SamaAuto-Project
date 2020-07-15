@@ -107,7 +107,7 @@
       <div id="content">
 
         <!-- Topbar -->
-        @include('layouts.nav._nav')
+        @include('layouts.nav._nav_admin')
         <!-- End of Topbar -->
 
         <!-- Begin Page Content -->
@@ -158,7 +158,7 @@
           <div class="modal-body">Sélectionnez "déconnecter" si vous etes sur de vouloir fermer votre session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-          <a class="btn btn-primary" href="{{ route('sign_in')}}">Déconnecter</a>
+          <a class="btn btn-primary" href="{{ route('deconnection')}}">Déconnecter</a>
           </div>
         </div>
       </div>
@@ -190,15 +190,16 @@
   <script src="{{ asset('/js/demo.js')}}"></script>
   <script src="{{ asset('/js/bar-vendeur.js')}}"></script>
   @yield('scripts') 
-  <script type="text/javascript">
-    $(document).ready(function() {
-        // Javascript method's body can be found in assets/js/demos.js
-        demo.initDashboardPageCharts();
 
-        demo.showNotification();
+<script src="{{ asset('/js/notification.js')}}"></script>
 
-    });
-</script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+    
+            notification.showNotification();
+    
+        });
+    </script>
 
 </body>
 

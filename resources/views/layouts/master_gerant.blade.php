@@ -168,7 +168,7 @@
       <div id="content">
 
         {{-- Barre de navigation --}}
-        @include('layouts.nav._nav')
+        @include('layouts.nav._nav_gerant')
         {{-- Fin Barre de navigation --}}
 
         <!-- Begin Page Content -->

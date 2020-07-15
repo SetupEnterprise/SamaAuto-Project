@@ -26,7 +26,7 @@
             <div id="design_text_voyage" class="text-lg">
                 <h3>Aucun véhicule n'est encore enregistré</h3>
                 <a class="btn btn-primary" href="{{ route('vehicule.create') }}" role="button">
-                Ajouter véhicule
+                    Ajouter véhicule
                 </a>
             </div>
         </div>

@@ -1,13 +1,35 @@
 <?php
-
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UserFormRequest;
+use App\Mail\SignUpConfirmation;
+use App\models\Admin;
 use App\models\Billet;
 use App\models\Client;
+use App\models\Gerant;
 use Illuminate\Http\Request;
+use App\models\User;
+use Illuminate\Support\Facades\Mail;
 
 class AdminController extends Controller
 {
+    public function authentificate()
+    {
+        return view('/admin/sign_in_admin');
+    }
+    public function auth_store(Request $request)
+    {
+        $email = $request->email;
+        $password = $request->current_password;
+        
+        $admin = User::where('email', $email)->where('password', $password)->where('profil', 'Admin')->first();
+        session(['admin' => $admin]);
+        if($admin){
+            return view('admin/home-admin');
+        }else{
+            return redirect()->route('admin_auth');
+        }
+    }
     /**
      * Display a listing of the resource.
      *
@@ -26,6 +48,29 @@ class AdminController extends Controller
     public function create_gerant()
     {
         return view('admin/create-gerant');
+    }
+
+    public function store_gerant(Request $request){
+        
+        $user =User::create([
+            'nom' => $request->nom,
+            'prenom' => $request->prenom,
+            'email' => $request->email,
+            'adresse' => $request->adresse,
+            'telephone' => $request->telephone,
+            'password' => 'passer',
+            'profil' => 'Gerant'
+        ]);
+        if($user){
+            Gerant::firstOrCreate([
+                'users_id' => $user->id
+            ]);
+        }
+        
+     //   $mailable = new SignUpConfirmation($request->nom, $request->prenom, $request->email);
+       // Mail::to($request->email)->send($mailable);
+      //  flash("Vehicule crée avec succés!", "success");
+        return view('/admin/create-gerant', compact('user'));
     }
 
     /**
@@ -109,5 +154,10 @@ class AdminController extends Controller
     public function stat_vendeur()
     {
         return view('admin.statistiques-vendeur');
+    }
+
+    public function quit(){
+        session()->forget('admin');
+        return redirect()->route('admin_auth');
     }
 }

@@ -22,7 +22,7 @@
                         <li><a href="#">Points de vente</a></li>
                         <li><a href="#">Acheter billet</a></li>
                         <li><a href="#">Les lignes</a></li>
-                        <li><a href="{{ route('gerant.index') }}">Gérant</a></li>
+                        <li><a href="{{ route('gerant.auth') }}">Gérant</a></li>
                       </ul>
 
             </nav>
