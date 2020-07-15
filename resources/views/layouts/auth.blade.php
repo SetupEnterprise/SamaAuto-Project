@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <title>{{$title ?? ''}}</title>
       <base href="/">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
       <link href="{{asset('css/login.component.css')}}" rel="stylesheet">
     </head>

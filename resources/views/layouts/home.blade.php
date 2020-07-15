@@ -4,7 +4,7 @@
       <meta charset="utf-8">
       <title>SamaAuto</title>
       <base href="/">
-      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
       <link href="<?php echo asset('css/bootstrap.min.css')?>" rel="stylesheet">
       <link href="<?php echo asset('css/header.component.css')?>" rel="stylesheet">
       <link href="<?php echo asset('css/home.component.css')?>" rel="stylesheet">
@@ -20,7 +20,7 @@
                     <!--<a href="#" id="icon"><img src="../../image/plogo.png" width="50rem" height="50rem"/></a>-->
                       <ul class="ulnave">
                         <li><a href="#">Points de vente</a></li>
-                        <li><a href="#">Acheter billet</a></li>
+                        <li><a href="{{ route('billetForm') }}">Acheter billet</a></li>
                         <li><a href="#">Les lignes</a></li>
                         <li><a href="{{ route('gerant.index') }}">Gérant</a></li>
                       </ul>
@@ -48,11 +48,11 @@
                      </form>
                   </div>
             </div>
+
             <div id="container">
 
               @yield('content')
-
-
+ 
             </div>
     </body>
 </html>

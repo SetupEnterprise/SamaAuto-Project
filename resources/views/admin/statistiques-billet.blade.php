@@ -16,7 +16,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Billet</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">423</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalBillet}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -33,7 +33,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Total Billets Vendus</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">400</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalVendu}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -50,7 +50,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">Total Billets Reportes</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">23</div>
+              <div class="h5 mb-0 font-weight-bold text-gray-800">{{$totalReporte}}</div>
               </div>
               <div class="col-auto">
                 <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
@@ -100,4 +100,8 @@
 
   </div>
   <!-- /.container-fluid -->
+@endsection
+@section('scripts')
+<script src="{{ asset('chart.js/Chart.min.js')}}"></script>
+<script src="{{ asset('/js/bar-billets.js')}}"></script>   
 @endsection
