@@ -1,5 +1,7 @@
 @extends('layouts.client')
-
+@section('head')
+  <link href="{{ asset('css/home.component.css') }}" rel="stylesheet">
+@endsection
 @section('content')
         <div id="corps">
             <div id="menuinfo">
@@ -26,8 +28,8 @@
                   <p>numero: 77 852 23 25</p>
                 </div>
                 <div id="image">
-                  <img id="image" src="<?php echo asset('img/samaautosloganjb12.png')?>" width="60%" />
+                  <img id="image" src="{{ asset('img/samaautosloganjb12.png') }}" width="60%" />
                 </div>
               </div>
-            </div>
+        </div>
 @stop
